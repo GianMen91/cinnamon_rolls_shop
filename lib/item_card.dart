@@ -12,35 +12,42 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return GestureDetector(
       onTap: press,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(defaultPadding),
-              decoration: BoxDecoration(
-                color: cinnamon.color,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Hero(
-                tag: "${cinnamon.id}",
-                child: Image.asset(cinnamon.image),
+          Container(
+            padding: const EdgeInsets.all(defaultPadding),
+            decoration: BoxDecoration(
+              color: cinnamon.color,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Hero(
+              tag: "${cinnamon.id}",
+              child: Image.asset(
+                cinnamon.image,
+                width: size.width > 600 ? 300 : 120,
+                height: size.width > 600 ? 300 : 120,
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
+            padding: EdgeInsets.symmetric(vertical: size.width > 600 ? 20 : 5),
             child: Text(
               cinnamon.title,
-              style: const TextStyle(
-                  color: darkTextColor, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: size.width > 600 ? 30.0 : 14.0,
+                  color: darkTextColor,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Text(
             "${cinnamon.price.toStringAsFixed(2)} €",
-            style: const TextStyle(color: darkTextColor),
+            style: TextStyle(
+                color: darkTextColor, fontSize: size.width > 600 ? 25.0 : 14.0),
           )
         ],
       ),

@@ -25,11 +25,13 @@ class _CartCounterState extends State<CartCounter> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Row(
       children: <Widget>[
         SizedBox(
-          width: 40,
-          height: 32,
+          width: size.width > 600 ? 80 : 40,
+          height: size.width > 600 ? 62 : 32,
           child: OutlinedButton(
             style: OutlinedButton.styleFrom(
               padding: EdgeInsets.zero,
@@ -54,12 +56,15 @@ class _CartCounterState extends State<CartCounter> {
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
           child: Text(
             numOfItems.toString().padLeft(2, "0"),
-            style: const TextStyle(color: darkTextColor),
+            style: TextStyle(
+              color: darkTextColor,
+              fontSize: size.width > 600 ? 25.0 : 14.0,
+            ),
           ),
         ),
         SizedBox(
-          width: 40,
-          height: 32,
+          width: size.width > 600 ? 80 : 40,
+          height: size.width > 600 ? 62 : 32,
           child: OutlinedButton(
             style: OutlinedButton.styleFrom(
               padding: EdgeInsets.zero,

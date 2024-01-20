@@ -20,13 +20,14 @@ class _ItemScreenState extends State<ItemScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: widget.cinnamon.color,
       appBar: AppBar(
         backgroundColor: widget.cinnamon.color,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+          icon: Icon(Icons.arrow_back_rounded, color: Colors.white, size: size.width > 600 ? 38 : 5),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -53,13 +54,14 @@ class _ItemScreenState extends State<ItemScreen> {
                     ),
                     child: Column(
                       children: <Widget>[
-                        const SizedBox(height: defaultPadding / 2),
+                        SizedBox(height:  size.width > 600 ? defaultPadding : defaultPadding/2),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: defaultPadding),
                           child: Text(widget.cinnamon.description,
-                              style: const TextStyle(
-                                  fontSize: 16, color: darkTextColor),
+                              style:  TextStyle(
+                                  fontSize: size.width > 600 ? 25.0 : 16.0,
+                                  color: darkTextColor),
                               textAlign: TextAlign.justify),
                         ),
                         const SizedBox(height: defaultPadding / 2),
@@ -89,15 +91,16 @@ class _ItemScreenState extends State<ItemScreen> {
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(double.infinity, 48),
+                                  minimumSize: Size(double.infinity, size.width > 600 ? 68.0 : 48.0),
                                   primary: lightTextColor,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(18)),
                                 ),
                                 child: Text(
                                   "Add to order".toUpperCase(),
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontWeight: FontWeight.bold,
+                                    fontSize: size.width > 600 ? 23.0 : 16.0,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -116,44 +119,51 @@ class _ItemScreenState extends State<ItemScreen> {
                       children: <Widget>[
                         Text(
                           widget.cinnamon.title,
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 22),
+                              fontSize: size.width > 600 ? 60.0 : 22.0),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
                           child: Text(
                             widget.cinnamon.type,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 14),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: size.width > 600 ? 30.0 : 14.0),
                           ),
                         ),
-                        const SizedBox(height: defaultPadding),
                         Row(
                           children: <Widget>[
                             RichText(
                               text: TextSpan(
                                 children: [
-                                  const TextSpan(text: "Price\n"),
+                                  TextSpan(
+                                      text: "Price\n",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize:
+                                              size.width > 600 ? 30.0 : 14.0)),
                                   TextSpan(
                                     text:
                                         "${widget.cinnamon.price.toStringAsFixed(2)} €",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         color: Colors.white,
+                                        fontSize:
+                                            size.width > 600 ? 30.0 : 14.0,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(width: defaultPadding),
-                            Expanded(
-                              child: Hero(
-                                tag: "${widget.cinnamon.id}",
-                                child: Image.asset(
-                                  widget.cinnamon.image,
-                                  fit: BoxFit.fill,
-                                ),
+                            SizedBox(
+                                width: size.width > 600 ? 150 : defaultPadding),
+                            Hero(
+                              tag: "${widget.cinnamon.id}",
+                              child: Image.asset(
+                                widget.cinnamon.image,
+                                width: size.width > 600 ? 500 : 60,
+                                fit: BoxFit.fill,
                               ),
                             )
                           ],
