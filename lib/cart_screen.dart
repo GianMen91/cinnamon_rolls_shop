@@ -13,11 +13,8 @@ class CartScreen extends StatelessWidget {
     final cartProvider = Provider.of<CartProvider>(context);
     final Size size = MediaQuery.of(context).size;
 
-    double totalPrice = 0;
-
-    for (var cartItem in cartProvider.cartItems) {
-      totalPrice += cartItem.cinnamon.price * cartItem.quantity;
-    }
+    double totalPrice = cartProvider.cartItems.fold(0, (sum, item) =>
+    sum + item.cinnamon.price * item.quantity);
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -25,15 +22,18 @@ class CartScreen extends StatelessWidget {
         backgroundColor: backgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_rounded,
-              color: lightTextColor, size: size.width > 600 ? 38 : 25),
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: lightTextColor,
+            size: size.width > 600 ? 38 : 25,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: size.height * 0.4,
             child: ListView.builder(
               itemCount: cartProvider.cartItems.length,
               itemBuilder: (context, index) {
@@ -57,7 +57,6 @@ class CartScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Name of the item
                             Text(
                               item.cinnamon.title,
                               style: TextStyle(
@@ -67,22 +66,19 @@ class CartScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: defaultPadding / 2),
-                            // Cart Counter widget
                             CartCounter(
                               initialQuantity: item.quantity,
                               onValueChanged: (value) {
-                                final cartProvider = Provider.of<CartProvider>(
-                                    context,
-                                    listen: false);
                                 cartProvider.setQuantity(
-                                    item.cinnamon, value);
+                                  item.cinnamon,
+                                  value,
+                                );
                               },
                             ),
                           ],
                         ),
                       ),
                       const SizedBox(width: defaultPadding),
-                      // Price of the item
                       Column(
                         children: [
                           Text(
@@ -119,14 +115,13 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(18.0),
+            padding: EdgeInsets.all(defaultPadding),
             child: Divider(
               height: 1,
               thickness: 1,
               color: Colors.grey,
             ),
           ),
-          // Total text and price
           Padding(
             padding: const EdgeInsets.all(defaultPadding),
             child: Row(
@@ -152,24 +147,27 @@ class CartScreen extends StatelessWidget {
           ),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.only(
-              left: defaultPadding,
-              right: defaultPadding,
-              bottom: 50,
+            padding: const EdgeInsets.symmetric(
+              horizontal: defaultPadding,
+              vertical: 50,
             ),
             child: ElevatedButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                   SnackBar(
-                     duration: const Duration(seconds: 10),
+                  SnackBar(
+                    duration: const Duration(seconds: 10),
                     content: Text(
-                        "Apologies! This is a demo app, and purchasing functionality is not available. However, feel free to explore the nearest Cinnamon shop in your area for the delightful experience of buying and enjoying a delicious cinnamon roll!",style:TextStyle(color: lightTextColor, fontSize: size.width > 600 ? 25.0 : 14.0)),
+                      "Apologies! This is a demo app, and purchasing functionality is not available. However, feel free to explore the nearest Cinnamon shop in your area for the delightful experience of buying and enjoying a delicious cinnamon roll!",
+                      style: TextStyle(
+                        color: lightTextColor,
+                        fontSize: size.width > 600 ? 25.0 : 14.0,
+                      ),
+                    ),
                   ),
                 );
               },
               style: ElevatedButton.styleFrom(
-                minimumSize:
-                    Size(double.infinity, size.width > 600 ? 68.0 : 48.0),
+                minimumSize: Size(double.infinity, size.width > 600 ? 68.0 : 48.0),
                 primary: lightTextColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18),
