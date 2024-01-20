@@ -15,9 +15,8 @@ class CartScreen extends StatelessWidget {
 
     double totalPrice = 0;
 
-    // Calculate total price
-    for (var item in cartProvider.cartItems) {
-      totalPrice += item.price;
+    for (var cartItem in cartProvider.cartItems) {
+      totalPrice += cartItem.cinnamon.price * cartItem.quantity;
     }
 
     return Scaffold(
@@ -50,10 +49,10 @@ class CartScreen extends StatelessWidget {
                         width: 80,
                         padding: const EdgeInsets.all(defaultPadding),
                         decoration: BoxDecoration(
-                          color: item.color,
+                          color: item.cinnamon.color,
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Image.asset(item.image),
+                        child: Image.asset(item.cinnamon.image),
                       ),
                       const SizedBox(width: defaultPadding),
                       Expanded(
@@ -62,7 +61,7 @@ class CartScreen extends StatelessWidget {
                           children: [
                             // Name of the item
                             Text(
-                              item.title,
+                              item.cinnamon.title,
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -71,14 +70,21 @@ class CartScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: defaultPadding / 2),
                             // Cart Counter widget
-                            CartCounter(),
+                            CartCounter(
+                              initialQuantity: item.quantity, // Pass the initial quantity from the cart item
+                              onValueChanged: (value) {
+                                // Update the quantity in the CartProvider when CartCounter changes
+                                final cartProvider = Provider.of<CartProvider>(context, listen: false);
+                                cartProvider.updateQuantity(item.cinnamon, value);
+                              },
+                            ),
                           ],
                         ),
                       ),
                       const SizedBox(width: defaultPadding),
                       // Price of the item
                       Text(
-                        "${item.price.toStringAsFixed(2)} €",
+                        "${item.cinnamon.price.toStringAsFixed(2)} €",
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

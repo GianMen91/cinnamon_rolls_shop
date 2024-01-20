@@ -5,18 +5,26 @@ import 'cart_counter.dart';
 import 'cart_provider.dart';
 import 'constants.dart';
 
-class ItemScreen extends StatelessWidget {
+class ItemScreen extends StatefulWidget {
   const ItemScreen({Key? key, required this.cinnamon}) : super(key: key);
 
   final Cinnamon cinnamon;
 
   @override
+  State<ItemScreen> createState() => _ItemScreenState();
+}
+
+class _ItemScreenState extends State<ItemScreen> {
+
+  int numOfItems = 1;
+
+  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: cinnamon.color,
+      backgroundColor: widget.cinnamon.color,
       appBar: AppBar(
-        backgroundColor: cinnamon.color,
+        backgroundColor: widget.cinnamon.color,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
@@ -50,24 +58,29 @@ class ItemScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: defaultPadding),
-                          child: Text(cinnamon.description,
+                          child: Text(widget.cinnamon.description,
                               style: const TextStyle(fontSize: 16, color: darkTextColor),
                               textAlign: TextAlign.justify),
                         ),
                         const SizedBox(height: defaultPadding / 2),
                         Row(
                           children: <Widget>[
-                            CartCounter(),
+                            CartCounter(
+                              onValueChanged: (value) {
+                                setState(() {
+                                  numOfItems = value;
+                                });
+                              }, initialQuantity: 1,
+                            ),
                             const SizedBox(width: 20),
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
                                   // Access the CartProvider
-                                  final cartProvider =
-                                  Provider.of<CartProvider>(context, listen: false);
+                                  final cartProvider = Provider.of<CartProvider>(context, listen: false);
 
-                                  // Add item to cart using the CartProvider
-                                  cartProvider.addToCart(cinnamon);
+                                  // Add item to cart using the CartProvider and the quantity from CartCounter
+                                  cartProvider.addToCart(widget.cinnamon, numOfItems);
 
                                   // Optionally, show a snackbar or navigate to the cart screen.
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -76,6 +89,7 @@ class ItemScreen extends StatelessWidget {
                                     ),
                                   );
                                 },
+
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: const Size(double.infinity, 48),
                                     primary: lightTextColor,
@@ -103,7 +117,7 @@ class ItemScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          cinnamon.title,
+                          widget.cinnamon.title,
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -112,7 +126,7 @@ class ItemScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
                           child: Text(
-                            cinnamon.type,
+                            widget.cinnamon.type,
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 14),
                           ),
@@ -125,7 +139,7 @@ class ItemScreen extends StatelessWidget {
                                 children: [
                                   const TextSpan(text: "Price\n"),
                                   TextSpan(
-                                    text: "${cinnamon.price.toStringAsFixed(2)} €",
+                                    text: "${widget.cinnamon.price.toStringAsFixed(2)} €",
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -136,9 +150,9 @@ class ItemScreen extends StatelessWidget {
                             const SizedBox(width: defaultPadding),
                             Expanded(
                               child: Hero(
-                                tag: "${cinnamon.id}",
+                                tag: "${widget.cinnamon.id}",
                                 child: Image.asset(
-                                  cinnamon.image,
+                                  widget.cinnamon.image,
                                   fit: BoxFit.fill,
                                 ),
                               ),
