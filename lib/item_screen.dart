@@ -15,7 +15,6 @@ class ItemScreen extends StatefulWidget {
 }
 
 class _ItemScreenState extends State<ItemScreen> {
-
   int numOfItems = 1;
 
   @override
@@ -59,7 +58,8 @@ class _ItemScreenState extends State<ItemScreen> {
                           padding: const EdgeInsets.symmetric(
                               vertical: defaultPadding),
                           child: Text(widget.cinnamon.description,
-                              style: const TextStyle(fontSize: 16, color: darkTextColor),
+                              style: const TextStyle(
+                                  fontSize: 16, color: darkTextColor),
                               textAlign: TextAlign.justify),
                         ),
                         const SizedBox(height: defaultPadding / 2),
@@ -70,30 +70,28 @@ class _ItemScreenState extends State<ItemScreen> {
                                 setState(() {
                                   numOfItems = value;
                                 });
-                              }, initialQuantity: 1,
+                              },
+                              initialQuantity: 1,
                             ),
                             const SizedBox(width: 20),
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  // Access the CartProvider
-                                  final cartProvider = Provider.of<CartProvider>(context, listen: false);
-
-                                  // Add item to cart using the CartProvider and the quantity from CartCounter
-                                  cartProvider.addToCart(widget.cinnamon, numOfItems);
-
-                                  // Optionally, show a snackbar or navigate to the cart screen.
+                                  final cartProvider =
+                                      Provider.of<CartProvider>(context,
+                                          listen: false);
+                                  cartProvider.addToCart(
+                                      widget.cinnamon, numOfItems);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content: Text('Item added to cart'),
                                     ),
                                   );
                                 },
-
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: const Size(double.infinity, 48),
-                                    primary: lightTextColor,
-                                    shape: RoundedRectangleBorder(
+                                  primary: lightTextColor,
+                                  shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(18)),
                                 ),
                                 child: Text(
@@ -139,7 +137,8 @@ class _ItemScreenState extends State<ItemScreen> {
                                 children: [
                                   const TextSpan(text: "Price\n"),
                                   TextSpan(
-                                    text: "${widget.cinnamon.price.toStringAsFixed(2)} €",
+                                    text:
+                                        "${widget.cinnamon.price.toStringAsFixed(2)} €",
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),

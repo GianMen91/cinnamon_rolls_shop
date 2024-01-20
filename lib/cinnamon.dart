@@ -8,12 +8,12 @@ class Cinnamon {
 
   Cinnamon(
       {required this.image,
-        required this.title,
-        required this.description,
-        required this.price,
-        required this.type,
-        required this.id,
-        required this.color});
+      required this.title,
+      required this.description,
+      required this.price,
+      required this.type,
+      required this.id,
+      required this.color});
 }
 
 List<Cinnamon> cinnamon = [
@@ -22,7 +22,8 @@ List<Cinnamon> cinnamon = [
       title: "Classic Roll",
       price: 4.80,
       type: "Cinnamon Rolls",
-      description: "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
+      description:
+          "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
       image: "assets/images/Classic-Roll-Vegan.png",
       color: const Color(0xFFD3A984)),
   Cinnamon(
@@ -30,7 +31,8 @@ List<Cinnamon> cinnamon = [
       title: "Blueberry Roll",
       price: 5.30,
       type: "Fruity Rolls",
-      description: "Fluffy dough with our blueberry filling, topped with vegan cream ch**se frosting, garnished with our blueberry compote & colorful blossoms.",
+      description:
+          "Fluffy dough with our blueberry filling, topped with vegan cream ch**se frosting, garnished with our blueberry compote & colorful blossoms.",
       image: "assets/images/Blueberry-Roll.png",
       color: const Color(0xFF954D86)),
   Cinnamon(
@@ -38,7 +40,8 @@ List<Cinnamon> cinnamon = [
       title: "Raspberry Roll",
       price: 5.30,
       type: "Fruity Rolls",
-      description: "Fluffy dough with raspberry filling, topped with vegan cream ch**se frosting, garnished with our raspberry compote, raspberry crunch & white chocolate.",
+      description:
+          "Fluffy dough with raspberry filling, topped with vegan cream ch**se frosting, garnished with our raspberry compote, raspberry crunch & white chocolate.",
       image: "assets/images/Raspebrry-Roll.png",
       color: const Color(0xFFD33D43)),
   Cinnamon(
@@ -46,16 +49,17 @@ List<Cinnamon> cinnamon = [
       title: "Apple Roll",
       price: 5.30,
       type: "Fruity Rolls",
-      description: "Fluffy dough with our apple cinnamon filling & fresh apple pieces, topped with vegan cream ch**se frosting & garnished with our apple compote.",
+      description:
+          "Fluffy dough with our apple cinnamon filling & fresh apple pieces, topped with vegan cream ch**se frosting & garnished with our apple compote.",
       image: "assets/images/Apple-Roll.png",
       color: const Color(0xFFD3A984)),
-
   Cinnamon(
     id: 5,
     title: "Cookie Dough Roll",
     price: 5.50,
     type: "Next Level Rolls",
-    description: "Fluffy dough with cinnamon filling, topped with vegan cream ch**se frosting & garnished with our cinnamade cookie dough.",
+    description:
+        "Fluffy dough with cinnamon filling, topped with vegan cream ch**se frosting & garnished with our cinnamade cookie dough.",
     image: "assets/images/Cookie-Dough-Roll.png",
     color: const Color(0xFFD3A984),
   ),
@@ -64,7 +68,8 @@ List<Cinnamon> cinnamon = [
     title: "Oreo Roll",
     price: 5.50,
     type: "Next Level Rolls",
-    description: "Fluffy dough with nut nougat cream made to our own recipe, topped with vegan cream ch**se frosting, garnished with our nut nougat cream & oreo crunch.",
+    description:
+        "Fluffy dough with nut nougat cream made to our own recipe, topped with vegan cream ch**se frosting, garnished with our nut nougat cream & oreo crunch.",
     image: "assets/images/Oreo-Roll.png",
     color: const Color(0xFF62453A),
   ),
@@ -73,7 +78,8 @@ List<Cinnamon> cinnamon = [
       title: "Pistachio Roll",
       price: 5.50,
       type: "Next Level Rolls",
-      description: "Fluffy dough with pistachio cream made to our own recipe, topped with cream cheese frosting, garnished with our homemade pistachio cream & chopped pistachios.",
+      description:
+          "Fluffy dough with pistachio cream made to our own recipe, topped with cream cheese frosting, garnished with our homemade pistachio cream & chopped pistachios.",
       image: "assets/images/Pistachio-Roll.png",
       color: const Color(0xFFB4BE70)),
   Cinnamon(
@@ -81,7 +87,8 @@ List<Cinnamon> cinnamon = [
       title: "Marzipan Roll",
       price: 5.50,
       type: "Next Level Rolls",
-      description: "Fluffy dough with aromatic marzipan filling and fruity cranberries, topped with cream-cheese frosting, garnished with our delicious topping cream and mini gingerbread biscuits.",
+      description:
+          "Fluffy dough with aromatic marzipan filling and fruity cranberries, topped with cream-cheese frosting, garnished with our delicious topping cream and mini gingerbread biscuits.",
       image: "assets/images/Marzipan-Roll.png",
       color: const Color(0xFFD3A984)),
   Cinnamon(
@@ -89,7 +96,8 @@ List<Cinnamon> cinnamon = [
       title: "Bueno Roll",
       price: 5.50,
       type: "Next Level Rolls",
-      description: "Fluffy dough with bueno hazelnut cream made to our own recipe, topped with vegan cream ch**se frosting & garnished with our bueno hazelnut cream & crispy oreo white crunch.",
+      description:
+          "Fluffy dough with bueno hazelnut cream made to our own recipe, topped with vegan cream ch**se frosting & garnished with our bueno hazelnut cream & crispy oreo white crunch.",
       image: "assets/images/Bueno-Roll.png",
       color: const Color(0xFFEEC08F)),
   Cinnamon(
@@ -97,7 +105,8 @@ List<Cinnamon> cinnamon = [
     title: "Tiramisu Roll",
     price: 5.50,
     type: "Next Level Rolls",
-    description: "Fluffy dough with our nut nougat cream, topped with cream cheese frosting, a fresh espresso shot, cocoa powder, mascarpone & amaretti cookie.",
+    description:
+        "Fluffy dough with our nut nougat cream, topped with cream cheese frosting, a fresh espresso shot, cocoa powder, mascarpone & amaretti cookie.",
     image: "assets/images/Tiramisu-Roll.png",
     color: const Color(0xFF614034),
   ),
@@ -106,7 +115,8 @@ List<Cinnamon> cinnamon = [
     title: "Speculas Roll",
     price: 5.50,
     type: "Next Level Rolls",
-    description: "Fluffy dough with nut nougat cream made to our own recipe, topped with vegan cream ch**se, garnished with peanut cream & peanuts.",
+    description:
+        "Fluffy dough with nut nougat cream made to our own recipe, topped with vegan cream ch**se, garnished with peanut cream & peanuts.",
     image: "assets/images/Speculas-Roll.png",
     color: const Color(0xFFA45B30),
   ),
@@ -115,7 +125,8 @@ List<Cinnamon> cinnamon = [
       title: "Snicka Roll",
       price: 5.50,
       type: "Next Level Rolls",
-      description: "Fluffy dough with nut nougat cream made to our own recipe, topped with vegan cream ch**se, garnished with peanut cream & peanuts.",
+      description:
+          "Fluffy dough with nut nougat cream made to our own recipe, topped with vegan cream ch**se, garnished with peanut cream & peanuts.",
       image: "assets/images/Snicka-Roll.png",
       color: const Color(0xFFD89851)),
   Cinnamon(
@@ -123,7 +134,8 @@ List<Cinnamon> cinnamon = [
       title: "Raffaella Roll",
       price: 5.50,
       type: "Next Level Rolls",
-      description: "Fluffy dough with coconut cream made to our own recipe, topped with cream cheese frosting, garnished with our coconut cream & delicate grated coconut.",
+      description:
+          "Fluffy dough with coconut cream made to our own recipe, topped with cream cheese frosting, garnished with our coconut cream & delicate grated coconut.",
       image: "assets/images/Coco-Roll.png",
       color: const Color(0xFFEEC08F)),
   Cinnamon(
@@ -131,9 +143,9 @@ List<Cinnamon> cinnamon = [
     title: "Salted Caramel Roll",
     price: 5.50,
     type: "Next Level Rolls",
-    description: "Fluffy dough with salted caramel filling made to our own recipe, topped with cream cheese frosting, garnished with salted caramel cream & caramel crisp pearls.",
+    description:
+        "Fluffy dough with salted caramel filling made to our own recipe, topped with cream cheese frosting, garnished with salted caramel cream & caramel crisp pearls.",
     image: "assets/images/Salted-Caramell-Roll.png",
     color: const Color(0xFFC1834F),
   ),
-
 ];

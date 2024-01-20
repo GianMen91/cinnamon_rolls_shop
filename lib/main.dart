@@ -9,7 +9,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => CartProvider(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           // Use Builder to obtain a new context for navigation
           Future.delayed(
             const Duration(seconds: 3),
-                () => Navigator.pushReplacement(
+            () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const ShopScreen()),
             ),
@@ -40,14 +40,16 @@ class MyApp extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Center(
-                    child: Image.asset("assets/logo/Cinnamood-Logo.png", fit: BoxFit.contain, width: 300),
+                    child: Image.asset("assets/logo/Cinnamood-Logo.png",
+                        fit: BoxFit.contain, width: 300),
                   ),
                 ),
                 const Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 50),
-                    child: Text("Developed by Giancarlo Mennillo", style: TextStyle(color: darkTextColor)),
+                    child: Text("Developed by Giancarlo Mennillo",
+                        style: TextStyle(color: darkTextColor)),
                   ),
                 ),
               ],

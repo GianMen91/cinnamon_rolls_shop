@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({Key? key, required this.cinnamon, required this.press}) : super(key: key);
+  const ItemCard({Key? key, required this.cinnamon, required this.press})
+      : super(key: key);
 
   final Cinnamon cinnamon;
   final VoidCallback press;
@@ -33,7 +34,8 @@ class ItemCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
             child: Text(
               cinnamon.title,
-              style: const TextStyle(color: darkTextColor, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  color: darkTextColor, fontWeight: FontWeight.bold),
             ),
           ),
           Text(

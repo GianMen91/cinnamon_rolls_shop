@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class CartCounter extends StatefulWidget {
-  const CartCounter({Key? key, required this.onValueChanged, required this.initialQuantity}) : super(key: key);
+  const CartCounter(
+      {Key? key, required this.onValueChanged, required this.initialQuantity})
+      : super(key: key);
 
   final Function(int) onValueChanged;
   final int initialQuantity;

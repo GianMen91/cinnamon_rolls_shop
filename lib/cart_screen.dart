@@ -72,8 +72,11 @@ class CartScreen extends StatelessWidget {
                             CartCounter(
                               initialQuantity: item.quantity,
                               onValueChanged: (value) {
-                                final cartProvider = Provider.of<CartProvider>(context, listen: false);
-                                cartProvider.updateQuantity(item.cinnamon, value);
+                                final cartProvider = Provider.of<CartProvider>(
+                                    context,
+                                    listen: false);
+                                cartProvider.updateQuantity(
+                                    item.cinnamon, value);
                               },
                             ),
                           ],
@@ -104,7 +107,8 @@ class CartScreen extends StatelessWidget {
                               onPressed: () {
                                 cartProvider.removeItem(item.cinnamon);
                               },
-                              child: const Icon(Icons.delete, color: lightTextColor),
+                              child: const Icon(Icons.delete,
+                                  color: lightTextColor),
                             ),
                           ),
                         ],
@@ -158,7 +162,8 @@ class CartScreen extends StatelessWidget {
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text("Apologies! This is a demo app, and purchasing functionality is not available. However, feel free to explore the nearest Cinnamon shop in your area for the delightful experience of buying and enjoying a delicious cinnamon roll!"),
+                    content: Text(
+                        "Apologies! This is a demo app, and purchasing functionality is not available. However, feel free to explore the nearest Cinnamon shop in your area for the delightful experience of buying and enjoying a delicious cinnamon roll!"),
                   ),
                 );
               },
@@ -169,7 +174,7 @@ class CartScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                 ),
               ),
-              child:  Text(
+              child: Text(
                 "Proceed to Checkout".toUpperCase(),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,

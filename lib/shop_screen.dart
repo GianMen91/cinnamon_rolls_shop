@@ -54,9 +54,13 @@ class _ShopScreenState extends State<ShopScreen> {
                   badgeColor: Colors.white,
                   position: BadgePosition.topEnd(top: -2, end: -1),
                   child: IconButton(
-                    icon: const Icon(Icons.shopping_cart, color: lightTextColor),
+                    icon:
+                        const Icon(Icons.shopping_cart, color: lightTextColor),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CartScreen()));
                     },
                   ),
                 );
