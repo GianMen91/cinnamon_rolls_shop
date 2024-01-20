@@ -74,7 +74,7 @@ class CartScreen extends StatelessWidget {
                                 final cartProvider = Provider.of<CartProvider>(
                                     context,
                                     listen: false);
-                                cartProvider.updateQuantity(
+                                cartProvider.setQuantity(
                                     item.cinnamon, value);
                               },
                             ),

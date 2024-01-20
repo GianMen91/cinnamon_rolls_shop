@@ -1,23 +1,37 @@
+import 'package:collection/src/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 import 'cinnamon.dart';
 
 class CartItem {
-  Cinnamon cinnamon;
-  int quantity;
+  final Cinnamon cinnamon;
+  final int quantity;
 
   CartItem({required this.cinnamon, required this.quantity});
+
+  CartItem copyWith({Cinnamon? cinnamon, int? quantity}) {
+    return CartItem(
+      cinnamon: cinnamon ?? this.cinnamon,
+      quantity: quantity ?? this.quantity,
+    );
+  }
 }
 
 class CartProvider extends ChangeNotifier {
   final List<CartItem> _cartItems = [];
+  final Set<Cinnamon> _cartItemsSet = {};
 
   List<CartItem> get cartItems => _cartItems;
 
+  int indexOfCartItem(Cinnamon cinnamon) {
+    var item = _cartItems.firstWhereOrNull((item) => item.cinnamon == cinnamon);
+    return item != null ? _cartItems.indexOf(item) : -1;
+  }
+
   void addToCart(Cinnamon cinnamon, int quantity) {
-    int index = _cartItems.indexWhere((item) => item.cinnamon == cinnamon);
+    final index = indexOfCartItem(cinnamon);
 
     if (index != -1) {
-      _cartItems[index].quantity += quantity;
+      _cartItems[index] = _cartItems[index].copyWith(quantity: _cartItems[index].quantity + quantity);
     } else {
       _cartItems.add(CartItem(cinnamon: cinnamon, quantity: quantity));
     }
@@ -25,11 +39,11 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateQuantity(Cinnamon cinnamon, int newQuantity) {
-    int index = _cartItems.indexWhere((item) => item.cinnamon == cinnamon);
+  void setQuantity(Cinnamon cinnamon, int newQuantity) {
+    final index = indexOfCartItem(cinnamon);
 
     if (index != -1) {
-      _cartItems[index].quantity = newQuantity;
+      _cartItems[index] = _cartItems[index].copyWith(quantity: newQuantity);
       notifyListeners();
     }
   }
@@ -39,4 +53,3 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
-
