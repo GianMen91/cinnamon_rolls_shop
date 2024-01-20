@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
-class BuildCounterButton extends StatelessWidget {
-  const BuildCounterButton({
+class BuildIconButton extends StatelessWidget {
+  const BuildIconButton({
     Key? key,
     required this.icon,
     required this.onPressed,

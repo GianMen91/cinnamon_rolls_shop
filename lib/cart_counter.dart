@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'buildCounterButton.dart';
+import 'buildIounterButton.dart';
 import 'constants.dart';
 
 class CartCounter extends StatefulWidget {
@@ -30,7 +30,7 @@ class _CartCounterState extends State<CartCounter> {
 
     return Row(
       children: <Widget>[
-        BuildCounterButton(
+        BuildIconButton(
             onPressed: () {
               if (numOfItems > 1) {
                 setState(() {
@@ -50,7 +50,7 @@ class _CartCounterState extends State<CartCounter> {
             ),
           ),
         ),
-        BuildCounterButton(
+        BuildIconButton(
             onPressed: () {
               setState(() {
                 numOfItems++;

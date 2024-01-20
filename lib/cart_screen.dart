@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'buildIounterButton.dart';
 import 'cart_provider.dart';
 import 'constants.dart';
 import 'cart_counter.dart';
@@ -89,23 +90,11 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: defaultPadding / 2),
-                          SizedBox(
-                            width: size.width > 600 ? 80 : 40,
-                            height: size.width > 600 ? 62 : 32,
-                            child: OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                padding: EdgeInsets.zero,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(13),
-                                ),
-                              ),
+                          BuildIconButton(
                               onPressed: () {
                                 cartProvider.removeItem(item.cinnamon);
                               },
-                              child: const Icon(Icons.delete,
-                                  color: lightTextColor),
-                            ),
-                          ),
+                              icon: Icons.delete),
                         ],
                       ),
                     ],
