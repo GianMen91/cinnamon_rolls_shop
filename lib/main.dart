@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
       ),
       home: Builder(
         builder: (BuildContext context) {
-          // Use Builder to obtain a new context for navigation
           Future.delayed(
             const Duration(seconds: 3),
             () => Navigator.pushReplacement(
@@ -41,15 +40,15 @@ class MyApp extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Image.asset("assets/logo/Cinnamood-Logo.png",
-                        fit: BoxFit.contain, width: 300),
+                        fit: BoxFit.contain, width: MediaQuery.of(context).size.width > 600 ? 600.0 : 300.0),
                   ),
                 ),
-                const Align(
+                Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 50),
                     child: Text("Developed by Giancarlo Mennillo",
-                        style: TextStyle(color: darkTextColor)),
+                        style: TextStyle(color: darkTextColor,fontSize: MediaQuery.of(context).size.width > 600 ? 25.0 : 14.0)),
                   ),
                 ),
               ],

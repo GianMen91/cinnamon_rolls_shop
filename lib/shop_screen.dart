@@ -26,6 +26,8 @@ class _ShopScreenState extends State<ShopScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     List<Cinnamon> filteredCinnamon = cinnamon.where((c) {
       bool typeCondition = _selectedType == 'All' || c.type == _selectedType;
       bool searchCondition =
@@ -37,9 +39,10 @@ class _ShopScreenState extends State<ShopScreen> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         title: Padding(
-          padding: const EdgeInsets.all(7.0),
+          padding: EdgeInsets.all(size.width > 600 ? 10.0 : 7.0),
           child: Image.asset('assets/logo/Cinnamood-Logo.png',
-              fit: BoxFit.cover, height: 20),
+              fit: BoxFit.cover,
+              height:  size.width > 600 ? 30 : 20),
         ),
         backgroundColor: menuBackgroundColor,
         elevation: 0,
@@ -55,7 +58,7 @@ class _ShopScreenState extends State<ShopScreen> {
                   position: BadgePosition.topEnd(top: -2, end: -1),
                   child: IconButton(
                     icon:
-                        const Icon(Icons.shopping_cart, color: lightTextColor),
+                         Icon(Icons.shopping_cart, color: lightTextColor,size: size.width > 600 ? 38 : 25),
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -66,11 +69,11 @@ class _ShopScreenState extends State<ShopScreen> {
                 );
               } else {
                 return IconButton(
-                  icon: const Icon(Icons.shopping_cart, color: lightTextColor),
+                  icon:  Icon(Icons.shopping_cart, color: lightTextColor,size: size.width > 600 ? 38 : 25),
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('The cart is empty!'),
+                      SnackBar(
+                        content: Text('The cart is empty!', style:TextStyle(color: lightTextColor, fontSize: size.width > 600 ? 25.0 : 14.0)),
                       ),
                     );
                   },
@@ -91,7 +94,7 @@ class _ShopScreenState extends State<ShopScreen> {
           }),
           Container(
             margin: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-            height: 30,
+            height: size.width > 600 ? 50 : 30,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: types.length,
@@ -106,7 +109,6 @@ class _ShopScreenState extends State<ShopScreen> {
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(
                     left: defaultPadding,
-                    // At end item it adds extra 20 right padding
                     right: index == types.length - 1 ? defaultPadding : 0,
                   ),
                   padding:
@@ -120,8 +122,8 @@ class _ShopScreenState extends State<ShopScreen> {
                   child: Text(
                     types[index],
                     style: index == selectedIndex
-                        ? const TextStyle(color: Colors.white)
-                        : const TextStyle(color: darkTextColor),
+                        ? TextStyle(color: Colors.white, fontSize: size.width > 600 ? 20.0 : 14.0)
+                        : TextStyle(color: darkTextColor, fontSize: size.width > 600 ? 20.0 : 14.0)
                   ),
                 ),
               ),

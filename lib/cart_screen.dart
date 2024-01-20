@@ -11,6 +11,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
+    final Size size = MediaQuery.of(context).size;
 
     double totalPrice = 0;
 
@@ -24,10 +25,8 @@ class CartScreen extends StatelessWidget {
         backgroundColor: backgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_rounded,
-            color: lightTextColor,
-          ),
+          icon: Icon(Icons.arrow_back_rounded,
+              color: lightTextColor, size: size.width > 600 ? 38 : 25),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -45,7 +44,7 @@ class CartScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        width: 80,
+                        width: size.width > 600 ? 120.0 : 80.0,
                         padding: const EdgeInsets.all(defaultPadding),
                         decoration: BoxDecoration(
                           color: item.cinnamon.color,
@@ -61,8 +60,8 @@ class CartScreen extends StatelessWidget {
                             // Name of the item
                             Text(
                               item.cinnamon.title,
-                              style: const TextStyle(
-                                fontSize: 16,
+                              style: TextStyle(
+                                fontSize: size.width > 600 ? 30.0 : 16.0,
                                 fontWeight: FontWeight.bold,
                                 color: darkTextColor,
                               ),
@@ -88,15 +87,15 @@ class CartScreen extends StatelessWidget {
                         children: [
                           Text(
                             "${item.cinnamon.price.toStringAsFixed(2)} €",
-                            style: const TextStyle(
-                              fontSize: 16,
+                            style: TextStyle(
+                              fontSize: size.width > 600 ? 30.0 : 16.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: defaultPadding / 2),
                           SizedBox(
-                            width: 40,
-                            height: 32,
+                            width: size.width > 600 ? 80 : 40,
+                            height: size.width > 600 ? 62 : 32,
                             child: OutlinedButton(
                               style: OutlinedButton.styleFrom(
                                 padding: EdgeInsets.zero,
@@ -133,18 +132,18 @@ class CartScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Total',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: size.width > 600 ? 35.0 : 18.0,
                     fontWeight: FontWeight.bold,
                     color: darkTextColor,
                   ),
                 ),
                 Text(
                   "${totalPrice.toStringAsFixed(2)} €",
-                  style: const TextStyle(
-                    fontSize: 20,
+                  style: TextStyle(
+                    fontSize: size.width > 600 ? 40.0 : 18.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -168,7 +167,8 @@ class CartScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 48),
+                minimumSize:
+                    Size(double.infinity, size.width > 600 ? 68.0 : 48.0),
                 primary: lightTextColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18),
@@ -176,8 +176,9 @@ class CartScreen extends StatelessWidget {
               ),
               child: Text(
                 "Proceed to Checkout".toUpperCase(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontSize: size.width > 600 ? 23.0 : 16.0,
                   color: Colors.white,
                 ),
               ),

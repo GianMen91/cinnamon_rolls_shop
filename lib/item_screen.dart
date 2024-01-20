@@ -27,7 +27,7 @@ class _ItemScreenState extends State<ItemScreen> {
         backgroundColor: widget.cinnamon.color,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_rounded, color: Colors.white, size: size.width > 600 ? 38 : 5),
+          icon: Icon(Icons.arrow_back_rounded, color: Colors.white, size: size.width > 600 ? 38 : 25),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -39,7 +39,7 @@ class _ItemScreenState extends State<ItemScreen> {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(top: size.height * 0.3),
+                    margin: EdgeInsets.only(top: size.width > 600 ? size.height * 0.35 : size.height * 0.25),
                     padding: const EdgeInsets.only(
                       top: defaultPadding,
                       left: defaultPadding,
@@ -54,7 +54,7 @@ class _ItemScreenState extends State<ItemScreen> {
                     ),
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height:  size.width > 600 ? defaultPadding : defaultPadding/2),
+                        SizedBox(height:  size.width > 600 ? defaultPadding*3 : defaultPadding),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: defaultPadding),
@@ -85,8 +85,8 @@ class _ItemScreenState extends State<ItemScreen> {
                                   cartProvider.addToCart(
                                       widget.cinnamon, numOfItems);
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Item added to cart'),
+                                    SnackBar(
+                                      content: Text('Item added to cart', style:TextStyle(color: lightTextColor, fontSize: size.width > 600 ? 25.0 : 14.0)),
                                     ),
                                   );
                                 },
@@ -162,7 +162,7 @@ class _ItemScreenState extends State<ItemScreen> {
                               tag: "${widget.cinnamon.id}",
                               child: Image.asset(
                                 widget.cinnamon.image,
-                                width: size.width > 600 ? 500 : 60,
+                                width: size.width > 600 ? 500 : 260,
                                 fit: BoxFit.fill,
                               ),
                             )

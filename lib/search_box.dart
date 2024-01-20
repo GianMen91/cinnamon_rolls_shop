@@ -11,6 +11,7 @@ class SearchBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.all(defaultPadding),
       padding: const EdgeInsets.symmetric(
@@ -23,11 +24,11 @@ class SearchBox extends StatelessWidget {
       ),
       child: TextField(
         onChanged: onChanged,
-        style: const TextStyle(color: lightTextColor),
-        decoration: const InputDecoration(
+        style: TextStyle(color: lightTextColor, fontSize: size.width > 600 ? 25.0 : 14.0),
+        decoration: InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
-          icon: Icon(Icons.search, color: lightTextColor),
+          icon: Icon(Icons.search, color: lightTextColor,size: size.width > 600 ? 38 : 25),
           hintText: 'Search by cinnamon name',
           hintStyle: TextStyle(color: lightTextColor),
         ),
