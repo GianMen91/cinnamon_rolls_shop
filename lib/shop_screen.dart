@@ -73,6 +73,7 @@ class _ShopScreenState extends State<ShopScreen> {
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
+                        duration: const Duration(seconds: 1),
                         content: Text('The cart is empty!', style:TextStyle(color: lightTextColor, fontSize: size.width > 600 ? 25.0 : 14.0)),
                       ),
                     );

@@ -86,6 +86,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                       widget.cinnamon, numOfItems);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
+                                      duration: const Duration(seconds: 1),
                                       content: Text('Item added to cart', style:TextStyle(color: lightTextColor, fontSize: size.width > 600 ? 25.0 : 14.0)),
                                     ),
                                   );
