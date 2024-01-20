@@ -33,5 +33,10 @@ class CartProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void removeItem(Cinnamon item) {
+    _cartItems.removeWhere((cartItem) => cartItem.cinnamon == item);
+    notifyListeners();
+  }
 }
 

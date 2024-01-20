@@ -81,12 +81,33 @@ class CartScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: defaultPadding),
                       // Price of the item
-                      Text(
-                        "${item.cinnamon.price.toStringAsFixed(2)} €",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Column(
+                        children: [
+                          Text(
+                            "${item.cinnamon.price.toStringAsFixed(2)} €",
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: defaultPadding / 2),
+                          SizedBox(
+                            width: 40,
+                            height: 32,
+                            child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                ),
+                              ),
+                              onPressed: () {
+                                cartProvider.removeItem(item.cinnamon);
+                              },
+                              child: const Icon(Icons.delete, color: lightTextColor),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
