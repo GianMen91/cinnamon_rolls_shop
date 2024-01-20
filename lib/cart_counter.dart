@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'buildCounterButton.dart';
 import 'constants.dart';
 
 class CartCounter extends StatefulWidget {
@@ -29,29 +30,16 @@ class _CartCounterState extends State<CartCounter> {
 
     return Row(
       children: <Widget>[
-        SizedBox(
-          width: size.width > 600 ? 80 : 40,
-          height: size.width > 600 ? 62 : 32,
-          child: OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(13),
-              ),
-            ),
+        BuildCounterButton(
             onPressed: () {
-              setState(() {
-                if (numOfItems > 1) {
-                  setState(() {
-                    numOfItems--;
-                    widget.onValueChanged(numOfItems);
-                  });
-                }
-              });
+              if (numOfItems > 1) {
+                setState(() {
+                  numOfItems--;
+                  widget.onValueChanged(numOfItems);
+                });
+              }
             },
-            child: const Icon(Icons.remove, color: lightTextColor),
-          ),
-        ),
+            icon: Icons.remove),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
           child: Text(
@@ -62,25 +50,14 @@ class _CartCounterState extends State<CartCounter> {
             ),
           ),
         ),
-        SizedBox(
-          width: size.width > 600 ? 80 : 40,
-          height: size.width > 600 ? 62 : 32,
-          child: OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(13),
-              ),
-            ),
+        BuildCounterButton(
             onPressed: () {
               setState(() {
                 numOfItems++;
                 widget.onValueChanged(numOfItems);
               });
             },
-            child: const Icon(Icons.add, color: lightTextColor),
-          ),
-        ),
+            icon: Icons.add),
       ],
     );
   }
