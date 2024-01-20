@@ -134,7 +134,13 @@ class CartScreen extends StatelessWidget {
               bottom: 50,
             ),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Apologies! This is a demo app, and purchasing functionality is not available. However, feel free to explore the nearest Cinnamon shop in your area for the delightful experience of buying and enjoying a delicious cinnamon roll!"),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 48),
                 primary: lightTextColor,
