@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'cart_provider.dart'; // Import the CartProvider
+import 'cart_provider.dart';
 import 'constants.dart';
-import 'cinnamon.dart';
 import 'cart_counter.dart';
 
 class CartScreen extends StatelessWidget {
@@ -71,9 +70,8 @@ class CartScreen extends StatelessWidget {
                             const SizedBox(height: defaultPadding / 2),
                             // Cart Counter widget
                             CartCounter(
-                              initialQuantity: item.quantity, // Pass the initial quantity from the cart item
+                              initialQuantity: item.quantity,
                               onValueChanged: (value) {
-                                // Update the quantity in the CartProvider when CartCounter changes
                                 final cartProvider = Provider.of<CartProvider>(context, listen: false);
                                 cartProvider.updateQuantity(item.cinnamon, value);
                               },
@@ -146,7 +144,7 @@ class CartScreen extends StatelessWidget {
               ),
               child:  Text(
                 "Proceed to Checkout".toUpperCase(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
