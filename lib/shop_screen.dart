@@ -1,7 +1,9 @@
 import 'package:cinnamon_rolls_shop/cart_screen.dart';
 import 'package:cinnamon_rolls_shop/search_box.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'cart_provider.dart';
 import 'constants.dart';
 import 'cinnamon.dart';
 import 'item_screen.dart';
@@ -42,10 +44,19 @@ class _ShopScreenState extends State<ShopScreen> {
         elevation: 0,
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.shopping_cart, color: Color(0xFFBDC2FF)),
+            icon: Icon(Icons.shopping_cart),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CartScreen()));
+              final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
+              if (cartProvider.cartItems.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('The cart is empty!'),
+                  ),
+                );
+              } else {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+              }
             },
           ),
           const SizedBox(width: defaultPadding / 2)
