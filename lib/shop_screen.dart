@@ -8,6 +8,7 @@ import 'constants.dart';
 import 'cinnamon.dart';
 import 'item_screen.dart';
 import 'item_card.dart';
+import 'package:badges/badges.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({Key? key}) : super(key: key);
@@ -43,23 +44,37 @@ class _ShopScreenState extends State<ShopScreen> {
         backgroundColor: menuBackgroundColor,
         elevation: 0,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-              final cartProvider = Provider.of<CartProvider>(context, listen: false);
+          Consumer<CartProvider>(
+            builder: (context, cartProvider, child) {
+              int itemCount = cartProvider.cartItems.length;
 
-              if (cartProvider.cartItems.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('The cart is empty!'),
+              if (itemCount > 0) {
+                return Badge(
+                  badgeContent: Text(itemCount.toString()),
+                  badgeColor: Colors.white,
+                  position: BadgePosition.topEnd(top: -2, end: -1),
+                  child: IconButton(
+                    icon: const Icon(Icons.shopping_cart, color: lightTextColor),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen()));
+                    },
                   ),
                 );
               } else {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+                return IconButton(
+                  icon: const Icon(Icons.shopping_cart, color: lightTextColor),
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('The cart is empty!'),
+                      ),
+                    );
+                  },
+                );
               }
             },
           ),
-          const SizedBox(width: defaultPadding / 2)
+          const SizedBox(width: defaultPadding / 2),
         ],
       ),
       body: Column(
