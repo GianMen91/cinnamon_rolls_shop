@@ -1,79 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'cinnamon.dart';
+import 'cart_provider.dart'; // Import the CartProvider
 import 'constants.dart';
+import 'cinnamon.dart';
 import 'cart_counter.dart';
 
-class CartScreen extends StatefulWidget {
+class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
 
   @override
-  _CartScreenState createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> {
-  List<Map<String, dynamic>> cartItems = [
-    {
-      'cinnamon': Cinnamon(
-        id: 9,
-        title: "Tiramisu Roll",
-        price: 5.50,
-        type: "Next Level Rolls",
-        description:
-            "Fluffy dough with our nut nougat cream, topped with cream cheese frosting, a fresh espresso shot, cocoa powder, mascarpone & amaretti cookie.",
-        image: "assets/images/Tiramisu-Roll.png",
-        color: const Color(0xFF614034),
-      ),
-      'quantity': 2
-    },
-    {
-      'cinnamon': Cinnamon(
-        id: 9,
-        title: "Tiramisu Roll",
-        price: 5.50,
-        type: "Next Level Rolls",
-        description:
-            "Fluffy dough with our nut nougat cream, topped with cream cheese frosting, a fresh espresso shot, cocoa powder, mascarpone & amaretti cookie.",
-        image: "assets/images/Tiramisu-Roll.png",
-        color: const Color(0xFF614034),
-      ),
-      'quantity': 2
-    },
-    {
-      'cinnamon': Cinnamon(
-        id: 9,
-        title: "Tiramisu Roll",
-        price: 5.50,
-        type: "Next Level Rolls",
-        description:
-            "Fluffy dough with our nut nougat cream, topped with cream cheese frosting, a fresh espresso shot, cocoa powder, mascarpone & amaretti cookie.",
-        image: "assets/images/Tiramisu-Roll.png",
-        color: const Color(0xFF614034),
-      ),
-      'quantity': 2
-    },
-    {
-      'cinnamon': Cinnamon(
-        id: 9,
-        title: "Tiramisu Roll",
-        price: 5.50,
-        type: "Next Level Rolls",
-        description:
-            "Fluffy dough with our nut nougat cream, topped with cream cheese frosting, a fresh espresso shot, cocoa powder, mascarpone & amaretti cookie.",
-        image: "assets/images/Tiramisu-Roll.png",
-        color: const Color(0xFF614034),
-      ),
-      'quantity': 2
-    },
-  ];
-
-  @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
+
     double totalPrice = 0;
 
     // Calculate total price
-    for (var item in cartItems) {
-      totalPrice += item['cinnamon'].price * item['quantity'];
+    for (var item in cartProvider.cartItems) {
+      totalPrice += item.price;
     }
 
     return Scaffold(
@@ -94,11 +38,9 @@ class _CartScreenState extends State<CartScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
             child: ListView.builder(
-              itemCount: cartItems.length,
+              itemCount: cartProvider.cartItems.length,
               itemBuilder: (context, index) {
-                var item = cartItems[index];
-                Cinnamon cinnamon = item['cinnamon'];
-                int quantity = item['quantity'];
+                var item = cartProvider.cartItems[index];
 
                 return Padding(
                   padding: const EdgeInsets.all(defaultPadding),
@@ -108,12 +50,11 @@ class _CartScreenState extends State<CartScreen> {
                         width: 80,
                         padding: const EdgeInsets.all(defaultPadding),
                         decoration: BoxDecoration(
-                          color: cinnamon.color,
+                          color: item.color,
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Image.asset(cinnamon.image),
+                        child: Image.asset(item.image),
                       ),
-
                       const SizedBox(width: defaultPadding),
                       Expanded(
                         child: Column(
@@ -121,29 +62,23 @@ class _CartScreenState extends State<CartScreen> {
                           children: [
                             // Name of the item
                             Text(
-                              cinnamon.title,
+                              item.title,
                               style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: darkTextColor),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: darkTextColor,
+                              ),
                             ),
                             const SizedBox(height: defaultPadding / 2),
                             // Cart Counter widget
-                            const CartCounter(
-                                /*numOfItems: quantity,
-                              onUpdate: (value) {
-                                setState(() {
-                                  cartItems[index]['quantity'] = value;
-                                });
-                              },*/
-                                ),
+                            CartCounter(),
                           ],
                         ),
                       ),
                       const SizedBox(width: defaultPadding),
                       // Price of the item
                       Text(
-                        "${cinnamon.price.toStringAsFixed(2)} €",
+                        "${item.price.toStringAsFixed(2)} €",
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -190,7 +125,10 @@ class _CartScreenState extends State<CartScreen> {
           const Spacer(),
           Padding(
             padding: const EdgeInsets.only(
-                left: defaultPadding, right: defaultPadding, bottom: 50),
+              left: defaultPadding,
+              right: defaultPadding,
+              bottom: 50,
+            ),
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -200,9 +138,9 @@ class _CartScreenState extends State<CartScreen> {
                   borderRadius: BorderRadius.circular(18),
                 ),
               ),
-              child: Text(
+              child:  Text(
                 "Proceed to Checkout".toUpperCase(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),

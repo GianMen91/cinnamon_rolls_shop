@@ -1,6 +1,8 @@
 import 'package:cinnamon_rolls_shop/cinnamon.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'cart_counter.dart';
+import 'cart_provider.dart';
 import 'constants.dart';
 
 class ItemScreen extends StatelessWidget {
@@ -55,11 +57,25 @@ class ItemScreen extends StatelessWidget {
                         const SizedBox(height: defaultPadding / 2),
                         Row(
                           children: <Widget>[
-                            const CartCounter(),
+                            CartCounter(),
                             const SizedBox(width: 20),
                             Expanded(
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  // Access the CartProvider
+                                  final cartProvider =
+                                  Provider.of<CartProvider>(context, listen: false);
+
+                                  // Add item to cart using the CartProvider
+                                  cartProvider.addToCart(cinnamon);
+
+                                  // Optionally, show a snackbar or navigate to the cart screen.
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Item added to cart'),
+                                    ),
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: const Size(double.infinity, 48),
                                     primary: lightTextColor,
