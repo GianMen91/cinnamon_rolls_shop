@@ -69,6 +69,7 @@ class _ShopScreenState extends State<ShopScreen> {
                   position: BadgePosition.topEnd(top: -2, end: -1),
                   child: IconButton(
                     icon: Icon(Icons.shopping_cart,
+                        key: const Key('cart_not_empty'),
                         color: lightTextColor,
                         size: size.width > 600 ? 38 : 25),
                     onPressed: () {
