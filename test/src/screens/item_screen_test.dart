@@ -1,4 +1,5 @@
 import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
+import 'package:cinnamon_rolls_shop/src/constants.dart';
 import 'package:cinnamon_rolls_shop/src/models/cinnamon.dart';
 import 'package:cinnamon_rolls_shop/src/screens/item_screen.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +8,15 @@ import 'package:provider/provider.dart';
 
 void main() {
   group('ItemScreen', () {
-    final Cinnamon testCinnamon = Cinnamon(
-      id: 1,
-      title: "Test Cinnamon",
-      price: 5.00,
-      type: "Test Type",
-      description: "Test Description",
-      image: "assets/test_image.png", // Update with an actual image asset path
-      color: Colors.blue,
-    );
+    final Cinnamon testCinnamon =   Cinnamon(
+        id: 1,
+        title: "Classic Roll",
+        price: 4.80,
+        type: "Cinnamon Rolls",
+        description:
+        "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
+        image: "assets/images/Classic-Roll-Vegan.png",
+        color: const Color(0xFFD3A984));
 
     testWidgets('Renders ItemScreen correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
@@ -27,13 +28,71 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle(); // Wait for animations to complete
+      await tester.pumpAndSettle();
 
       expect(find.byType(ItemScreen), findsOneWidget);
-      expect(find.text('Add to order'.toUpperCase()), findsOneWidget);
-      expect(find.text('Test Cinnamon'), findsOneWidget);
-      expect(find.text('Test Type'), findsOneWidget);
-      expect(find.text('Price\n5.00 €'), findsOneWidget);
+
+      // Check that the AppBar exists
+      var appBar = find.byKey(const Key('app_bar'));
+      expect(appBar, findsOneWidget);
+
+      // Get the widget and check its background color
+      final appBarWidget = tester.widget<AppBar>(appBar);
+      expect(appBarWidget.backgroundColor, const Color(0xFFD3A984));
+
+      var arrow_back_icon = find.byKey(const Key('arrow_back_icon'));
+      expect(arrow_back_icon, findsOneWidget);
+
+      // Check that the item title widget exists
+      var itemTitle = find.byKey(const Key('item_title'));
+      expect(itemTitle, findsOneWidget);
+
+      // Get the widget and check its text property
+      final itemTitleWidget = tester.widget<Text>(itemTitle);
+      expect(itemTitleWidget.data, "Classic Roll");
+
+      // Check that the item type widget exists
+      var itemType = find.byKey(const Key('item_type'));
+      expect(itemType, findsOneWidget);
+
+      // Get the widget and check its text property
+      final itemTypeWidget = tester.widget<Text>(itemType);
+      expect(itemTypeWidget.data, "Cinnamon Rolls");
+
+      // Check that the item description widget exists
+      var itemDescription = find.byKey(const Key('item_description'));
+      expect(itemDescription, findsOneWidget);
+
+      // Get the widget and check its text property
+      final itemDescriptionWidget = tester.widget<Text>(itemDescription);
+      expect(itemDescriptionWidget.data, "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.");
+
+
+      // Check that the item price widget exists
+      var priceRow = find.byKey(const Key('price_row'));
+      expect(priceRow, findsOneWidget);
+
+      // Get the widget and check its text property
+      final priceRowWidget = tester.widget<Text>(priceRow);
+      expect(priceRowWidget.data, "Price\n4.80 €");
+
+      // Find the ElevatedButton widget
+      var addToOrderButton = find.byKey(const Key('add_to_order_button'));
+      expect(addToOrderButton, findsOneWidget);
+
+      // Get the ElevatedButton widget
+      final buttonWidget = tester.widget<ElevatedButton>(addToOrderButton);
+
+      // Check the text content of the ElevatedButton
+      expect(buttonWidget.child, isA<Text>().having(
+            (text) => text.data,
+        'text.data',
+        "ADD TO ORDER",
+      ));
+
+      // Check the background color of the ElevatedButton
+      expect(buttonWidget.style?.backgroundColor?.resolve({}), lightTextColor);
+
     });
 
     testWidgets('Quantity management in ItemScreen', (WidgetTester tester) async {

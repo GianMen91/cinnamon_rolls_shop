@@ -34,9 +34,11 @@ class _ItemScreenState extends State<ItemScreen> {
     return Scaffold(
       backgroundColor: widget.cinnamon.color,
       appBar: AppBar(
+        key: const Key('app_bar'),
         backgroundColor: widget.cinnamon.color,
         elevation: 0,
         leading: IconButton(
+          key: const Key('arrow_back_icon'),
           icon: Icon(Icons.arrow_back_rounded,
               color: Colors.white, size: size.width > 600 ? 38 : 25),
           onPressed: () => Navigator.pop(context),
@@ -78,6 +80,7 @@ class _ItemScreenState extends State<ItemScreen> {
                           padding: const EdgeInsets.symmetric(
                               vertical: defaultPadding),
                           child: Text(widget.cinnamon.description,
+                              key: const Key('item_description'),
                               style: TextStyle(
                                   fontSize: size.width > 600 ? 25.0 : 16.0,
                                   color: darkTextColor),
@@ -100,6 +103,7 @@ class _ItemScreenState extends State<ItemScreen> {
                             // ElevatedButton to add the item to the cart
                             Expanded(
                               child: ElevatedButton(
+                                key: const Key('add_to_order_button'),
                                 onPressed: () {
                                   // Access the CartProvider using Provider
                                   final cartProvider =
@@ -112,6 +116,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                     SnackBar(
                                       duration: const Duration(seconds: 1),
                                       content: Text('Item added to cart',
+                                          key: const Key('add_to_cart_snack_bar'),
                                           style: TextStyle(
                                               color: lightTextColor,
                                               fontSize: size.width > 600
@@ -152,6 +157,7 @@ class _ItemScreenState extends State<ItemScreen> {
                         // Display the cinnamon item title
                         Text(
                           widget.cinnamon.title,
+                          key: const Key('item_title'),
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -162,6 +168,7 @@ class _ItemScreenState extends State<ItemScreen> {
                           padding: const EdgeInsets.only(top: 8.0),
                           child: Text(
                             widget.cinnamon.type,
+                            key: const Key('item_type'),
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: size.width > 600 ? 30.0 : 14.0),
@@ -170,31 +177,18 @@ class _ItemScreenState extends State<ItemScreen> {
                         // Row containing price, spacing, and Hero image
                         Row(
                           children: <Widget>[
-                            // RichText for displaying price
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                      text: "Price\n",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize:
-                                              size.width > 600 ? 30.0 : 14.0)),
-                                  TextSpan(
-                                    text:
-                                        "${widget.cinnamon.price.toStringAsFixed(2)} €",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                            size.width > 600 ? 30.0 : 14.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              "Price\n${widget.cinnamon.price.toStringAsFixed(2)} €",
+                              key: const Key('price_row'),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: size.width > 600 ? 30.0 : 14.0)
                             ),
                             // SizedBox for spacing
-                            SizedBox(
-                                width: size.width > 600 ? 150 : defaultPadding),
+                            const Expanded(
+                              child: SizedBox(),
+                            ),
                             // Hero image for smooth transition between screens
                             Hero(
                               tag: "${widget.cinnamon.id}",
