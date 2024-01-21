@@ -6,6 +6,14 @@ Cinnamood Shop is a delightful Flutter application inspired by the renowned [Cin
 The app brings the delectable experience of exploring and virtually shopping for mouth-watering cinnamon rolls.
 Capturing the essence of the Cinnamood shop, the app features a user-friendly interface, a diverse product catalog, and a dynamic cart system.
 
+## Screenshots
+
+<img src="img/img-1.png" width=300 /> 
+<img src="img/img-2.png" width=300 /> 
+<img src="img/img-3.png" width=300 /> 
+<img src="img/img-4.png" width=300 /> 
+<img src="img/img-5.png" width=300 /> 
+
 ## Features
 
 - **User-Friendly Interface**: Enjoy an intuitive and visually appealing design for a seamless user experience.
