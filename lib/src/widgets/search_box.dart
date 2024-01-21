@@ -23,6 +23,7 @@ class SearchBox extends StatelessWidget {
 
     // Return a container with a styled text field for searching
     return Container(
+      key: const Key('search_box_container'),
       margin: const EdgeInsets.all(defaultPadding),
       padding: const EdgeInsets.symmetric(
         horizontal: defaultPadding,
@@ -33,6 +34,7 @@ class SearchBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextField(
+        key: const Key('search_text_field'),
         onChanged: onChanged,
         style: TextStyle(
             color: lightTextColor, fontSize: size.width > 600 ? 25.0 : 14.0),
@@ -40,6 +42,7 @@ class SearchBox extends StatelessWidget {
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
           icon: Icon(Icons.search,
+              key: const Key('search_icon'),
               color: lightTextColor, size: size.width > 600 ? 38 : 25),
           hintText: 'Search by cinnamon name',
           hintStyle: const TextStyle(color: lightTextColor),
