@@ -1,5 +1,4 @@
 import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
-import 'package:cinnamon_rolls_shop/src/screens/shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:cinnamon_rolls_shop/src/screens/splash_screen.dart';
@@ -18,7 +17,7 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider(
         create: (context) => CartProvider(),
-        child: MaterialApp(
+        child: const MaterialApp(
           home: SplashScreen(),
         ),
       ),
@@ -30,11 +29,12 @@ void main() {
     expect(find.byType(SplashScreen), findsOneWidget);
   });
 
-  testWidgets('Splash screen displays developer information', (WidgetTester tester) async {
+  testWidgets('Splash screen displays developer information',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       ChangeNotifierProvider(
         create: (context) => CartProvider(),
-        child: MaterialApp(
+        child: const MaterialApp(
           home: SplashScreen(),
         ),
       ),

@@ -40,8 +40,8 @@ void main() {
       final appBarWidget = tester.widget<AppBar>(appBar);
       expect(appBarWidget.backgroundColor, const Color(0xFFD3A984));
 
-      var arrow_back_icon = find.byKey(const Key('arrow_back_icon'));
-      expect(arrow_back_icon, findsOneWidget);
+      var arrowBackIcon = find.byKey(const Key('arrow_back_icon'));
+      expect(arrowBackIcon, findsOneWidget);
 
       // Check that the item title widget exists
       var itemTitle = find.byKey(const Key('item_title'));

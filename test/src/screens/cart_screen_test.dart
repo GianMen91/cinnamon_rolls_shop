@@ -11,7 +11,7 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
           child: const MaterialApp(
-            home: const CartScreen(),
+            home: CartScreen(),
           ),
         ),
       );
@@ -20,12 +20,13 @@ void main() {
       expect(find.byKey(const Key('checkout_button')), findsOneWidget);
     });
 
-    testWidgets('Proceed to Checkout button triggers SnackBar', (WidgetTester tester) async {
+    testWidgets('Proceed to Checkout button triggers SnackBar',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
           child: const MaterialApp(
-            home: const CartScreen(),
+            home: CartScreen(),
           ),
         ),
       );
@@ -38,12 +39,13 @@ void main() {
       expect(find.byKey(const Key('cart_snackbar')), findsOneWidget);
     });
 
-    testWidgets('SnackBar is not present if not triggered', (WidgetTester tester) async {
+    testWidgets('SnackBar is not present if not triggered',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
           child: const MaterialApp(
-            home: const CartScreen(),
+            home: CartScreen(),
           ),
         ),
       );

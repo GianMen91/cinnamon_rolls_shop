@@ -37,7 +37,5 @@ void main() {
         expect(item.color, isNotNull);
       }
     });
-
-    // TODO Add more tests
   });
 }

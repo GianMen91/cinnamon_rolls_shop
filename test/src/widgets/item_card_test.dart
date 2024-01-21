@@ -17,17 +17,12 @@ void main() {
         image: "assets/images/Classic-Roll-Vegan.png",
         color: const Color(0xFFD3A984));
 
-    // Variable to track whether the press callback is invoked
-    bool callbackInvoked = false;
-
     // Build our widget and trigger a frame
     await tester.pumpWidget(
       MaterialApp(
         home: ItemCard(
           cinnamon: testCinnamon,
-          press: () {
-            callbackInvoked = true;
-          },
+          press: () {},
         ),
       ),
     );
@@ -73,23 +68,18 @@ void main() {
         image: "assets/images/Classic-Roll-Vegan.png",
         color: const Color(0xFFD3A984));
 
-    // Variable to track whether the press callback is invoked
-    bool callbackInvoked = false;
-
     // Build our widget and trigger a frame
     await tester.pumpWidget(
       MaterialApp(
         home: ItemCard(
           cinnamon: testCinnamon,
-          press: () {
-            callbackInvoked = true;
-          },
+          press: () {},
         ),
       ),
     );
 
     // Find the widget you want to test
-    var itemImage = find.byKey(Key('item_image'));
+    var itemImage = find.byKey(const Key('item_image'));
 
     expect(itemImage, findsOneWidget);
 

@@ -1,5 +1,4 @@
 import 'package:cinnamon_rolls_shop/src/screens/splash_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:cinnamon_rolls_shop/main.dart';
@@ -14,6 +13,8 @@ void main() {
         child: const MyApp(),
       ),
     );
+
+    await tester.pump(const Duration(seconds: 3));
 
     // Verify that the SplashScreen is present.
     expect(find.byType(SplashScreen), findsOneWidget);

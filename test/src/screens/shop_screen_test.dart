@@ -14,7 +14,7 @@ void main() {
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
-          child: MaterialApp(
+          child: const MaterialApp(
             home: ShopScreen(),
           ),
         ),
@@ -33,7 +33,7 @@ void main() {
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
-          child: MaterialApp(
+          child: const MaterialApp(
             home: ShopScreen(),
           ),
         ),
@@ -55,7 +55,7 @@ void main() {
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
-          child: MaterialApp(
+          child: const MaterialApp(
             home: ShopScreen(),
           ),
         ),
@@ -71,11 +71,12 @@ void main() {
       expect(find.text('Fruity Rolls'), findsOneWidget);
     });
 
-    testWidgets('Tap on ItemCard navigates to ItemScreen', (WidgetTester tester) async {
+    testWidgets('Tap on ItemCard navigates to ItemScreen',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
-          child: MaterialApp(
+          child: const MaterialApp(
             home: ShopScreen(),
           ),
         ),
@@ -91,11 +92,12 @@ void main() {
       expect(find.byType(ItemScreen), findsOneWidget);
     });
 
-    testWidgets('Tap on cart icon navigates to CartScreen', (WidgetTester tester) async {
+    testWidgets('Tap on cart icon navigates to CartScreen',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
-          child: MaterialApp(
+          child: const MaterialApp(
             home: ShopScreen(),
           ),
         ),
@@ -110,6 +112,5 @@ void main() {
       // Verify that the navigation to CartScreen occurs
       expect(find.byType(CartScreen), findsOneWidget);
     });
-
   });
 }
