@@ -30,6 +30,7 @@ class ItemCard extends StatelessWidget {
           // Container for the cinnamon image
           Container(
             padding: const EdgeInsets.all(defaultPadding),
+            key:const Key("item_card_container"),
             decoration: BoxDecoration(
               color: cinnamon.color,
               borderRadius: BorderRadius.circular(16),
@@ -39,6 +40,7 @@ class ItemCard extends StatelessWidget {
               tag: "${cinnamon.id}",
               child: Image.asset(
                 cinnamon.image,
+                key:const Key("item_image"),
                 width: size.width > 600 ? 300 : 120,
                 // Adjust width based on screen size
                 height: size.width > 600
@@ -52,6 +54,7 @@ class ItemCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: size.width > 600 ? 20 : 5),
             child: Text(
               cinnamon.title,
+              key:const Key("item_title"),
               style: TextStyle(
                   fontSize: size.width > 600 ? 30.0 : 14.0,
                   color: darkTextColor,
@@ -61,6 +64,7 @@ class ItemCard extends StatelessWidget {
           // Text widget for displaying the cinnamon price
           Text(
             "${cinnamon.price.toStringAsFixed(2)} €",
+            key:const Key("item_price"),
             style: TextStyle(
                 color: darkTextColor, fontSize: size.width > 600 ? 25.0 : 14.0),
           )
