@@ -54,9 +54,11 @@ class _ItemScreenState extends State<ItemScreen> {
                   // Container for the detailed information about the cinnamon item
                   Container(
                     margin: EdgeInsets.only(
-                        top: size.width > 600
-                            ? size.height * 0.35
-                            : size.height * 0.25),
+                      top: size.width > 600
+                          ? size.height * 0.35
+                          : size.width < 400
+                          ? size.height * 0.25
+                          : size.height * 0.30),
                     padding: const EdgeInsets.only(
                       top: defaultPadding,
                       left: defaultPadding,
