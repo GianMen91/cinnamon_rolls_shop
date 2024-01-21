@@ -8,13 +8,13 @@ import 'package:provider/provider.dart';
 
 void main() {
   group('ItemScreen', () {
-    final Cinnamon testCinnamon =   Cinnamon(
+    final Cinnamon testCinnamon = Cinnamon(
         id: 1,
         title: "Classic Roll",
         price: 4.80,
         type: "Cinnamon Rolls",
         description:
-        "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
+            "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
         image: "assets/images/Classic-Roll-Vegan.png",
         color: const Color(0xFFD3A984));
 
@@ -65,8 +65,8 @@ void main() {
 
       // Get the widget and check its text property
       final itemDescriptionWidget = tester.widget<Text>(itemDescription);
-      expect(itemDescriptionWidget.data, "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.");
-
+      expect(itemDescriptionWidget.data,
+          "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.");
 
       // Check that the item price widget exists
       var priceRow = find.byKey(const Key('price_row'));
@@ -84,18 +84,20 @@ void main() {
       final buttonWidget = tester.widget<ElevatedButton>(addToOrderButton);
 
       // Check the text content of the ElevatedButton
-      expect(buttonWidget.child, isA<Text>().having(
+      expect(
+          buttonWidget.child,
+          isA<Text>().having(
             (text) => text.data,
-        'text.data',
-        "ADD TO ORDER",
-      ));
+            'text.data',
+            "ADD TO ORDER",
+          ));
 
       // Check the background color of the ElevatedButton
       expect(buttonWidget.style?.backgroundColor?.resolve({}), lightTextColor);
-
     });
 
-    testWidgets('Quantity management in ItemScreen', (WidgetTester tester) async {
+    testWidgets('Add to order button triggers SnackBar',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
@@ -107,22 +109,20 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text('1'), findsOneWidget);
+      // Verify that the SnackBar is present
+      var addToOrderButton = find.byKey(const Key('add_to_order_button'));
+      expect(addToOrderButton, findsOneWidget);
 
-      // Tap the "+" button of CartCounter
-      await tester.tap(find.byIcon(Icons.add));
+      // Tap the add to order button
+      await tester.tap(addToOrderButton);
       await tester.pump();
 
-      expect(find.text('2'), findsOneWidget);
-
-      // Tap the "-" button of CartCounter
-      await tester.tap(find.byIcon(Icons.remove));
-      await tester.pump();
-
-      expect(find.text('1'), findsOneWidget);
+      // Verify that the SnackBar is present
+      expect(find.byKey(const Key('add_to_cart_snack_bar')), findsOneWidget);
     });
 
-    testWidgets('Add to order button adds item to cart', (WidgetTester tester) async {
+    testWidgets('Add to order button adds item to cart',
+        (WidgetTester tester) async {
       final CartProvider cartProvider = CartProvider();
 
       await tester.pumpWidget(
@@ -136,8 +136,12 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      // Tap the "Add to order" button
-      await tester.tap(find.text('Add to order'.toUpperCase()));
+      // Verify that the SnackBar is present
+      var addToOrderButton = find.byKey(const Key('add_to_order_button'));
+      expect(addToOrderButton, findsOneWidget);
+
+      // Tap the add to order button
+      await tester.tap(addToOrderButton);
       await tester.pump();
 
       // Verify that the item is added to the cart
@@ -146,6 +150,20 @@ void main() {
       expect(cartProvider.cartItems[0].quantity, 1);
     });
 
-    // Add more tests as needed...
+    testWidgets('SnackBar is not present if not triggered',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: MaterialApp(
+            home: ItemScreen(cinnamon: testCinnamon),
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key('add_to_cart_snack_bar')), findsNothing);
+    });
   });
 }

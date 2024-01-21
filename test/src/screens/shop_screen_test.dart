@@ -23,6 +23,7 @@ void main() {
       await tester.pumpAndSettle(); // Wait for animations to complete
 
       expect(find.byType(ShopScreen), findsOneWidget);
+
       expect(find.byType(SearchBox), findsOneWidget);
       expect(find.text('All'), findsOneWidget);
       expect(find.byType(ItemCard), findsWidgets);
@@ -110,6 +111,5 @@ void main() {
       expect(find.byType(CartScreen), findsOneWidget);
     });
 
-    // Add more tests as needed...
   });
 }

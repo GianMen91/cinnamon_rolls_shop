@@ -49,6 +49,7 @@ class SplashScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 50),
                   child: Text(
                     "Developed by Giancarlo Mennillo",
+                    key: const Key('developer_info'),
                     style: TextStyle(
                       color: darkTextColor,
                       fontSize:

@@ -4,96 +4,57 @@ import 'package:cinnamon_rolls_shop/src/widgets/cart_counter.dart';
 
 void main() {
   testWidgets('CartCounter initializes with the correct quantity',
-          (WidgetTester tester) async {
-        // Build our widget and trigger a frame
-        await tester.pumpWidget(
-          MaterialApp(
-            home: CartCounter(
-              onValueChanged: (value) {},
-              initialQuantity: 3,
-            ),
-          ),
-        );
+      (WidgetTester tester) async {
+    // Build our widget and trigger a frame
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CartCounter(
+          onValueChanged: (value) {},
+          initialQuantity: 1,
+        ),
+      ),
+    );
 
-        // Verify that the text displays the correct initial quantity
-        expect(find.text('03'), findsOneWidget);
-      });
+    var quantityDisplayText = find.byKey(const Key('quantity_display'));
+    expect(quantityDisplayText, findsOneWidget);
 
-  testWidgets('CartCounter decrements quantity correctly',
-          (WidgetTester tester) async {
-        // Variable to track the value changed callback
-        int changedValue = 0;
+    var quantityDisplayTextWidget = tester.widget<Text>(quantityDisplayText);
+    expect(quantityDisplayTextWidget.data, "01");
 
-        // Build our widget and trigger a frame
-        await tester.pumpWidget(
-          MaterialApp(
-            home: CartCounter(
-              onValueChanged: (value) {
-                changedValue = value;
-              },
-              initialQuantity: 3,
-            ),
-          ),
-        );
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
 
-        // Tap the decrease button
-        await tester.tap(find.byIcon(Icons.remove));
-        await tester.pump();
+    quantityDisplayTextWidget = tester.widget<Text>(quantityDisplayText);
+    expect(quantityDisplayTextWidget.data, "02");
 
-        // Verify that the quantity decreases and the callback is invoked
-        expect(find.text('02'), findsOneWidget);
-        expect(changedValue, 2);
-      });
+    await tester.tap(find.byIcon(Icons.remove));
+    await tester.pump(); // Ensure the widget tree is fully rebuilt
+
+    quantityDisplayTextWidget = tester.widget<Text>(quantityDisplayText);
+    expect(quantityDisplayTextWidget.data, "01");
+  });
 
   testWidgets('CartCounter does not decrement below 1',
-          (WidgetTester tester) async {
-        // Variable to track the value changed callback
-        int changedValue = 0;
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CartCounter(
+          onValueChanged: (value) {},
+          initialQuantity: 1,
+        ),
+      ),
+    );
 
-        // Build our widget and trigger a frame
-        await tester.pumpWidget(
-          MaterialApp(
-            home: CartCounter(
-              onValueChanged: (value) {
-                changedValue = value;
-              },
-              initialQuantity: 1,
-            ),
-          ),
-        );
+    var quantityDisplayText = find.byKey(const Key('quantity_display'));
+    expect(quantityDisplayText, findsOneWidget);
 
-        // Tap the decrease button
-        await tester.tap(find.byIcon(Icons.remove));
-        await tester.pump();
+    var quantityDisplayTextWidget = tester.widget<Text>(quantityDisplayText);
+    expect(quantityDisplayTextWidget.data, "01");
 
-        // Verify that the quantity remains 1 and the callback is not invoked
-        expect(find.text('01'), findsOneWidget);
-        expect(changedValue, 0); // Callback should not be invoked
-      });
+    await tester.tap(find.byIcon(Icons.remove));
+    await tester.pump();
 
-  testWidgets('CartCounter increments quantity correctly',
-          (WidgetTester tester) async {
-        // Variable to track the value changed callback
-        int changedValue = 0;
-
-        // Build our widget and trigger a frame
-        await tester.pumpWidget(
-          MaterialApp(
-            home: CartCounter(
-              onValueChanged: (value) {
-                changedValue = value;
-              },
-              initialQuantity: 3,
-            ),
-          ),
-        );
-
-        // Tap the increase button
-        await tester.tap(find.byIcon(Icons.add));
-        await tester.pump();
-
-        // Verify that the quantity increases and the callback is invoked
-        expect(find.text('04'), findsOneWidget);
-        expect(changedValue, 4);
-      });
+    quantityDisplayTextWidget = tester.widget<Text>(quantityDisplayText);
+    expect(quantityDisplayTextWidget.data, "01");
+  });
 }

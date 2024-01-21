@@ -66,7 +66,8 @@ class _CartCounterState extends State<CartCounter> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
           child: Text(
-            numOfItems.toString().padLeft(2, "0"), // Display with leading zeros
+            numOfItems.toString().padLeft(2, "0"),
+            key: const Key('quantity_display'),// Display with leading zeros
             style: TextStyle(
               color: darkTextColor,
               fontSize: size.width > 600

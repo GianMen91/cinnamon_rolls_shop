@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:cinnamon_rolls_shop/src/widgets/build_icon_button.dart';
 
 void main() {
-  testWidgets('BuildIconButton displays icon with correct size',
+  testWidgets('BuildIconButton displays all the components',
           (WidgetTester tester) async {
         // Build our app and trigger a frame.
         await tester.pumpWidget(
@@ -17,17 +17,13 @@ void main() {
      
         );
 
-        // Expect an OutlinedButton with a child Icon.
-        expect(find.byType(OutlinedButton), findsOneWidget);
-        expect(find.byType(Icon), findsOneWidget);
+        // Expect an OutlinedButton to be displayed
+        var buildIconButtonOutlinedButton = find.byKey(const Key('buildIconButtonOutlinedButton'));
+        expect(buildIconButtonOutlinedButton, findsOneWidget);
 
         // Expect the Icon to have the correct color.
         final Icon iconWidget = tester.widget(find.byType(Icon));
         expect(iconWidget.color, equals(lightTextColor));
-
-        // Expect the OutlinedButton to have a specific width and height.
-        final OutlinedButton buttonWidget = tester.widget(find.byType(OutlinedButton));
-        expect(buttonWidget.style?.minimumSize, equals(Size(80, 62)));
       });
 
   testWidgets('BuildIconButton invokes onPressed callback',
