@@ -173,6 +173,7 @@ class _ShopScreenState extends State<ShopScreen> {
                   childAspectRatio: 0.75,
                 ),
                 itemBuilder: (context, index) => ItemCard(
+                  key: Key('grid_item_$index'),
                   cinnamon: filteredCinnamon[index],
                   press: () => Navigator.push(
                     context,

@@ -3,6 +3,7 @@ import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
 import 'package:cinnamon_rolls_shop/src/constants.dart';
 import 'package:cinnamon_rolls_shop/src/models/cinnamon.dart';
 import 'package:cinnamon_rolls_shop/src/screens/cart_screen.dart';
+import 'package:cinnamon_rolls_shop/src/screens/item_screen.dart';
 import 'package:cinnamon_rolls_shop/src/screens/shop_screen.dart';
 import 'package:cinnamon_rolls_shop/src/widgets/item_card.dart';
 import 'package:cinnamon_rolls_shop/src/widgets/search_box.dart';
@@ -114,6 +115,31 @@ void main() {
 
       expect(find.byType(CartScreen), findsOneWidget);
     });
+
+    testWidgets('Tap on an item in the grid bring to the Item screen',
+            (WidgetTester tester) async {
+              await tester.pumpWidget(
+                ChangeNotifierProvider(
+                  create: (context) => CartProvider(),
+                  child: const MaterialApp(
+                    home: ShopScreen(),
+                  ),
+                ),
+              );
+
+          await tester.pumpAndSettle();
+
+          var itemObject = find.byKey(const Key('grid_item_1'));
+          expect(itemObject, findsOneWidget);
+
+          // Tap the add to order button
+          await tester.tap(itemObject);
+          await tester.pump();
+
+          await tester.pumpAndSettle(); // Wait for animations to complete
+
+          expect(find.byType(ItemScreen), findsOneWidget);
+        });
 
     testWidgets('Cart icon badge show right amount of quantity',
         (WidgetTester tester) async {
