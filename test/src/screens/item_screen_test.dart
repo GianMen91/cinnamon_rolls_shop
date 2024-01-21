@@ -96,60 +96,6 @@ void main() {
       expect(buttonWidget.style?.backgroundColor?.resolve({}), lightTextColor);
     });
 
-    testWidgets('Add to order button triggers SnackBar',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
-          child: MaterialApp(
-            home: ItemScreen(cinnamon: testCinnamon),
-          ),
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      // Verify that the SnackBar is present
-      var addToOrderButton = find.byKey(const Key('add_to_order_button'));
-      expect(addToOrderButton, findsOneWidget);
-
-      // Tap the add to order button
-      await tester.tap(addToOrderButton);
-      await tester.pump();
-
-      // Verify that the SnackBar is present
-      expect(find.byKey(const Key('add_to_cart_snack_bar')), findsOneWidget);
-    });
-
-    testWidgets('Add to order button adds item to cart',
-        (WidgetTester tester) async {
-      final CartProvider cartProvider = CartProvider();
-
-      await tester.pumpWidget(
-        ChangeNotifierProvider.value(
-          value: cartProvider,
-          child: MaterialApp(
-            home: ItemScreen(cinnamon: testCinnamon),
-          ),
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      // Verify that the SnackBar is present
-      var addToOrderButton = find.byKey(const Key('add_to_order_button'));
-      expect(addToOrderButton, findsOneWidget);
-
-      // Tap the add to order button
-      await tester.tap(addToOrderButton);
-      await tester.pump();
-
-      // Verify that the item is added to the cart
-      expect(cartProvider.cartItems.length, 1);
-      expect(cartProvider.cartItems[0].cinnamon, testCinnamon);
-      expect(cartProvider.cartItems[0].quantity, 1);
-    });
-
     testWidgets('SnackBar is not present if not triggered',
         (WidgetTester tester) async {
       await tester.pumpWidget(

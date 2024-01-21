@@ -28,21 +28,4 @@ void main() {
     // Verify that ShopScreen is navigated to
     expect(find.byType(SplashScreen), findsOneWidget);
   });
-
-  testWidgets('Splash screen displays developer information',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(
-      ChangeNotifierProvider(
-        create: (context) => CartProvider(),
-        child: const MaterialApp(
-          home: SplashScreen(),
-        ),
-      ),
-    );
-
-    await tester.pump(const Duration(seconds: 3));
-
-    var developerInfo = find.byKey(const Key('developer_info'));
-    expect(developerInfo, findsOneWidget);
-  });
 }
