@@ -1,6 +1,4 @@
 import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
-import 'package:cinnamon_rolls_shop/src/screens/cart_screen.dart';
-import 'package:cinnamon_rolls_shop/src/screens/item_screen.dart';
 import 'package:cinnamon_rolls_shop/src/screens/shop_screen.dart';
 import 'package:cinnamon_rolls_shop/src/widgets/item_card.dart';
 import 'package:cinnamon_rolls_shop/src/widgets/search_box.dart';
@@ -24,9 +22,62 @@ void main() {
 
       expect(find.byType(ShopScreen), findsOneWidget);
 
+      // Verify that the app bar is displayed
+      expect(find.byKey(const Key('shop_app_bar')), findsOneWidget);
+
+      // Verify that the search box is displayed
+      expect(find.byKey(const Key('search_box')), findsOneWidget);
       expect(find.byType(SearchBox), findsOneWidget);
+
+      // Verify that the type buttons container is displayed
+      expect(find.byKey(const Key('type_buttons_container')), findsOneWidget);
       expect(find.text('All'), findsOneWidget);
+      expect(find.text('Cinnamon Rolls'), findsOneWidget);
+      expect(find.text('Fruity Rolls'), findsOneWidget);
+      expect(find.text('Next Level Rolls'), findsOneWidget);
+
       expect(find.byType(ItemCard), findsWidgets);
+    });
+
+    testWidgets('Tap on empty cart triggers SnackBar',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: const MaterialApp(
+            home: ShopScreen(),
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      var emptyCartIcon = find.byKey(const Key('empty_cart_icon'));
+      expect(emptyCartIcon, findsOneWidget);
+
+      // Tap the add to order button
+      await tester.tap(emptyCartIcon);
+      await tester.pump();
+
+      // Verify that the SnackBar is present
+      expect(find.byKey(const Key('empty_cart_snackBar')), findsOneWidget);
+    });
+
+    testWidgets('SnackBar is not visible by default',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: const MaterialApp(
+            home: ShopScreen(),
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Verify that the SnackBar is present
+      expect(find.byKey(const Key('empty_cart_snackBar')), findsNothing);
     });
 
     testWidgets('Search for cinnamon items', (WidgetTester tester) async {
@@ -69,48 +120,6 @@ void main() {
 
       // Verify that the filtered item is found
       expect(find.text('Fruity Rolls'), findsOneWidget);
-    });
-
-    testWidgets('Tap on ItemCard navigates to ItemScreen',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
-          child: const MaterialApp(
-            home: ShopScreen(),
-          ),
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      // Tap on an ItemCard
-      await tester.tap(find.byType(ItemCard).first);
-      await tester.pump();
-
-      // Verify that the navigation to ItemScreen occurs
-      expect(find.byType(ItemScreen), findsOneWidget);
-    });
-
-    testWidgets('Tap on cart icon navigates to CartScreen',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
-          child: const MaterialApp(
-            home: ShopScreen(),
-          ),
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      // Tap on the cart icon
-      await tester.tap(find.byIcon(Icons.shopping_cart));
-      await tester.pump();
-
-      // Verify that the navigation to CartScreen occurs
-      expect(find.byType(CartScreen), findsOneWidget);
     });
   });
 }

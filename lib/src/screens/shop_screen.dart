@@ -46,6 +46,7 @@ class _ShopScreenState extends State<ShopScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
+        key: const Key('shop_app_bar'),
         title: Padding(
           padding: EdgeInsets.all(size.width > 600 ? 10.0 : 7.0),
           child: Image.asset('assets/logo/Cinnamood-Logo.png',
@@ -62,6 +63,7 @@ class _ShopScreenState extends State<ShopScreen> {
               // Show badge if cart is not empty
               if (itemCount > 0) {
                 return Badge(
+                  key: const Key('cart_badge'),
                   badgeContent: Text(itemCount.toString()),
                   badgeColor: Colors.white,
                   position: BadgePosition.topEnd(top: -2, end: -1),
@@ -80,11 +82,13 @@ class _ShopScreenState extends State<ShopScreen> {
               } else {
                 // Show regular cart icon if cart is empty
                 return IconButton(
+                  key: const Key('empty_cart_icon'),
                   icon: Icon(Icons.shopping_cart,
                       color: lightTextColor, size: size.width > 600 ? 38 : 25),
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
+                        key: const Key('empty_cart_snackBar'),
                         duration: const Duration(seconds: 1),
                         content: Text('The cart is empty!',
                             style: TextStyle(
@@ -104,13 +108,17 @@ class _ShopScreenState extends State<ShopScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // SearchBox widget for searching cinnamon items
-          SearchBox(onChanged: (value) {
-            setState(() {
-              _searchedValue = value;
-            });
-          }),
+          SearchBox(
+            key: const Key('search_box'),
+            onChanged: (value) {
+              setState(() {
+                _searchedValue = value;
+              });
+            },
+          ),
           // Container for displaying cinnamon types as buttons
           Container(
+            key: const Key('type_buttons_container'),
             margin: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
             height: size.width > 600 ? 50 : 30,
             child: ListView.builder(
