@@ -50,6 +50,7 @@ class _ShopScreenState extends State<ShopScreen> {
         title: Padding(
           padding: EdgeInsets.all(size.width > 600 ? 10.0 : 7.0),
           child: Image.asset('assets/logo/Cinnamood-Logo.png',
+              key: const Key('cinnamood_logo'),
               fit: BoxFit.cover, height: size.width > 600 ? 30 : 20),
         ),
         backgroundColor: menuBackgroundColor,

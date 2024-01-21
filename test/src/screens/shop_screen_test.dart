@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
+import 'package:cinnamon_rolls_shop/src/constants.dart';
 import 'package:cinnamon_rolls_shop/src/models/cinnamon.dart';
 import 'package:cinnamon_rolls_shop/src/screens/cart_screen.dart';
 import 'package:cinnamon_rolls_shop/src/screens/shop_screen.dart';
@@ -25,8 +26,15 @@ void main() {
 
       expect(find.byType(ShopScreen), findsOneWidget);
 
+      final appBar = find.byKey(const Key('shop_app_bar'));
       // Verify that the app bar is displayed
-      expect(find.byKey(const Key('shop_app_bar')), findsOneWidget);
+      expect(appBar, findsOneWidget);
+
+      // Get the widget and check its background color
+      final appBarWidget = tester.widget<AppBar>(appBar);
+      expect(appBarWidget.backgroundColor, menuBackgroundColor);
+
+      expect(find.byKey(const Key('cinnamood_logo')), findsOneWidget);
 
       // Verify that the search box is displayed
       expect(find.byKey(const Key('search_box')), findsOneWidget);
