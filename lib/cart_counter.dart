@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'buildIounterButton.dart';
+import 'build_icon_button.dart';
 import 'constants.dart';
 
 class CartCounter extends StatefulWidget {
