@@ -2,8 +2,8 @@
 import 'package:collection/src/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 
-// Import custom Cinnamon class
-import 'cinnamon.dart';
+// Import custom Cinnamon model
+import 'models/cinnamon.dart';
 
 // Define a class for representing items in the cart
 class CartItem {

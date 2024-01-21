@@ -1,16 +1,16 @@
 // Import necessary packages and files
-import 'package:cinnamon_rolls_shop/cart_screen.dart';
-import 'package:cinnamon_rolls_shop/search_box.dart';
+import 'package:cinnamon_rolls_shop/src/widgets/search_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart';
 
 // Import custom widgets and classes
-import 'cart_provider.dart';
-import 'constants.dart';
-import 'cinnamon.dart';
+import '../cart_provider.dart';
+import '../constants.dart';
+import '../models/cinnamon.dart';
+import '../widgets/item_card.dart';
+import 'cart_screen.dart';
 import 'item_screen.dart';
-import 'item_card.dart';
-import 'package:badges/badges.dart';
 
 // Define a StatefulWidget for the main shop screen
 class ShopScreen extends StatefulWidget {

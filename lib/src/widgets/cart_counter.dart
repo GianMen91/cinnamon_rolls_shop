@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'build_icon_button.dart';
 
 // Import constants file for using predefined values
-import 'constants.dart';
+import '../constants.dart';
 
 // Define a StatefulWidget for a cart item counter
 class CartCounter extends StatefulWidget {

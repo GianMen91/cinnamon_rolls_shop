@@ -1,6 +1,6 @@
 // Import necessary packages and files
 import 'dart:async';
-import 'package:cinnamon_rolls_shop/constants.dart';
+import 'package:cinnamon_rolls_shop/src/constants.dart';
 import 'package:flutter/material.dart';
 import 'shop_screen.dart';
 

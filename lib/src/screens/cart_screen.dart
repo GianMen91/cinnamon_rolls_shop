@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Import custom widgets and classes
-import 'build_icon_button.dart';
-import 'cart_provider.dart';
-import 'constants.dart';
-import 'cart_counter.dart';
+import '../widgets/build_icon_button.dart';
+import '../cart_provider.dart';
+import '../constants.dart';
+import '../widgets/cart_counter.dart';
 
 // Define a screen for displaying the items in the shopping cart
 class CartScreen extends StatelessWidget {

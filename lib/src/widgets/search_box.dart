@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Import constants file for using predefined values
-import 'constants.dart';
+import '../constants.dart';
 
 // Define a stateless widget for the search box
 class SearchBox extends StatelessWidget {

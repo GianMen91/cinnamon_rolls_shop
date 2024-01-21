@@ -1,12 +1,12 @@
 // Import necessary packages and files
-import 'package:cinnamon_rolls_shop/cinnamon.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Import custom widgets and classes
-import 'cart_counter.dart';
-import 'cart_provider.dart';
-import 'constants.dart';
+import '../cart_provider.dart';
+import '../constants.dart';
+import 'package:cinnamon_rolls_shop/src/models/cinnamon.dart';
+import 'package:cinnamon_rolls_shop/src/widgets/cart_counter.dart';
 
 // Define a StatefulWidget for displaying details of a specific cinnamon item
 class ItemScreen extends StatefulWidget {

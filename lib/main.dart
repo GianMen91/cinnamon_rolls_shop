@@ -1,8 +1,8 @@
 // Import necessary packages and files
-import 'package:cinnamon_rolls_shop/splash_screen.dart';
+import 'package:cinnamon_rolls_shop/src/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'cart_provider.dart';
+import 'src/cart_provider.dart';
 
 // Main function to run the application
 void main() {

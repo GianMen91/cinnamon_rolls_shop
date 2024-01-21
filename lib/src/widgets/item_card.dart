@@ -1,9 +1,9 @@
 // Import necessary packages and files
-import 'package:cinnamon_rolls_shop/cinnamon.dart';
+import 'package:cinnamon_rolls_shop/src/models/cinnamon.dart';
 import 'package:flutter/material.dart';
 
 // Import constants file for using predefined values
-import 'constants.dart';
+import '../constants.dart';
 
 // Define a stateless widget for displaying an item card
 class ItemCard extends StatelessWidget {
