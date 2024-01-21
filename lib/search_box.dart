@@ -30,7 +30,7 @@ class SearchBox extends StatelessWidget {
           focusedBorder: InputBorder.none,
           icon: Icon(Icons.search, color: lightTextColor,size: size.width > 600 ? 38 : 25),
           hintText: 'Search by cinnamon name',
-          hintStyle: TextStyle(color: lightTextColor),
+          hintStyle: const TextStyle(color: lightTextColor),
         ),
       ),
     );

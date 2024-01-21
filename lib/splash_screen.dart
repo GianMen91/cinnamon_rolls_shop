@@ -32,7 +32,7 @@ class SplashScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 50),
+                  padding: const EdgeInsets.only(bottom: 50),
                   child: Text("Developed by Giancarlo Mennillo",
                       style: TextStyle(color: darkTextColor,fontSize: MediaQuery.of(context).size.width > 600 ? 25.0 : 14.0)),
                 ),

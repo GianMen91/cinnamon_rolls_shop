@@ -18,7 +18,6 @@ class CartItem {
 
 class CartProvider extends ChangeNotifier {
   final List<CartItem> _cartItems = [];
-  final Set<Cinnamon> _cartItemsSet = {};
 
   List<CartItem> get cartItems => _cartItems;
 
