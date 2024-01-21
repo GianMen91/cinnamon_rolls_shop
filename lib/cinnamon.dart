@@ -1,21 +1,27 @@
+// Import the Flutter material library
 import 'package:flutter/material.dart';
 
+// Define a class representing a Cinnamon item
 class Cinnamon {
+  // Properties of a Cinnamon item
   final String image, title, description, type;
   final double price;
   final int id;
   final Color color;
 
-  Cinnamon(
-      {required this.image,
-      required this.title,
-      required this.description,
-      required this.price,
-      required this.type,
-      required this.id,
-      required this.color});
+  // Constructor for creating a Cinnamon item
+  Cinnamon({
+    required this.image,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.type,
+    required this.id,
+    required this.color,
+  });
 }
 
+// List of Cinnamon items
 List<Cinnamon> cinnamon = [
   Cinnamon(
       id: 1,

@@ -1,22 +1,31 @@
+// Import necessary packages and files
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// Import custom widgets and classes
 import 'build_icon_button.dart';
 import 'cart_provider.dart';
 import 'constants.dart';
 import 'cart_counter.dart';
 
+// Define a screen for displaying the items in the shopping cart
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
 
+  // Build method to create the widget UI
   @override
   Widget build(BuildContext context) {
+    // Access the CartProvider using Provider
     final cartProvider = Provider.of<CartProvider>(context);
+
+    // Get the size of the current screen
     final Size size = MediaQuery.of(context).size;
 
-    double totalPrice = cartProvider.cartItems.fold(0, (sum, item) =>
-    sum + item.cinnamon.price * item.quantity);
+    // Calculate the total price of items in the cart
+    double totalPrice = cartProvider.cartItems
+        .fold(0, (sum, item) => sum + item.cinnamon.price * item.quantity);
 
+    // Build the scaffold for the cart screen
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -40,10 +49,12 @@ class CartScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 var item = cartProvider.cartItems[index];
 
+                // Build the cart item row
                 return Padding(
                   padding: const EdgeInsets.all(defaultPadding),
                   child: Row(
                     children: [
+                      // Display the cinnamon item image
                       Container(
                         width: size.width > 600 ? 120.0 : 80.0,
                         padding: const EdgeInsets.all(defaultPadding),
@@ -58,6 +69,7 @@ class CartScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Display the cinnamon item title
                             Text(
                               item.cinnamon.title,
                               style: TextStyle(
@@ -67,6 +79,7 @@ class CartScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: defaultPadding / 2),
+                            // Use the CartCounter widget to manage quantity
                             CartCounter(
                               initialQuantity: item.quantity,
                               onValueChanged: (value) {
@@ -82,6 +95,7 @@ class CartScreen extends StatelessWidget {
                       const SizedBox(width: defaultPadding),
                       Column(
                         children: [
+                          // Display the price of the cinnamon item
                           Text(
                             "${item.cinnamon.price.toStringAsFixed(2)} €",
                             style: TextStyle(
@@ -90,6 +104,7 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: defaultPadding / 2),
+                          // Use BuildIconButton to implement the remove item button
                           BuildIconButton(
                               onPressed: () {
                                 cartProvider.removeItem(item.cinnamon);
@@ -103,6 +118,7 @@ class CartScreen extends StatelessWidget {
               },
             ),
           ),
+          // Divider for visual separation
           const Padding(
             padding: EdgeInsets.all(defaultPadding),
             child: Divider(
@@ -111,6 +127,7 @@ class CartScreen extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
+          // Display the total price of items in the cart
           Padding(
             padding: const EdgeInsets.all(defaultPadding),
             child: Row(
@@ -135,6 +152,7 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           const Spacer(),
+          // Button to proceed to checkout (dummy functionality in this case)
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: defaultPadding,
@@ -142,6 +160,7 @@ class CartScreen extends StatelessWidget {
             ),
             child: ElevatedButton(
               onPressed: () {
+                // Show a SnackBar with a message for the demo app
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     duration: const Duration(seconds: 10),
@@ -156,7 +175,8 @@ class CartScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, size.width > 600 ? 68.0 : 48.0),
+                minimumSize:
+                    Size(double.infinity, size.width > 600 ? 68.0 : 48.0),
                 primary: lightTextColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18),

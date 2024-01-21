@@ -34,7 +34,9 @@ class BuildIconButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed, // Callback function when button is pressed
-        child: Icon(icon, color: lightTextColor), // Display the specified icon with a predefined color
+        child: Icon(icon,
+            color:
+                lightTextColor), // Display the specified icon with a predefined color
       ),
     );
   }
