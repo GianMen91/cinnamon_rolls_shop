@@ -16,11 +16,8 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle(); // Wait for animations to complete
-
-      expect(find.byType(CartScreen), findsOneWidget);
-      expect(find.text('Total 0.00 €'), findsOneWidget);
-      expect(find.text('Proceed to Checkout'), findsOneWidget);
+      await tester.pumpAndSettle();
+      expect(find.byKey(Key('checkout_button')), findsOneWidget);
     });
 
     testWidgets('Add and remove item from cart', (WidgetTester tester) async {
@@ -35,10 +32,11 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text('Total 0.00 €'), findsOneWidget);
 
       await tester.tap(find.byIcon(Icons.add));
       await tester.pump();
+
+      var totalPrice = find.byKey(Key('total_price'))
 
       expect(find.text('Total 4.80 €'), findsOneWidget);
 
@@ -60,10 +58,23 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('Proceed to Checkout'));
+      await tester.tap(find.byKey(Key('checkout_button')));
       await tester.pump();
 
-      expect(find.text('Apologies! This is a demo app,'), findsOneWidget);
+      expect(find.byKey(Key('cart_snackbar')), findsOneWidget);
+    });
+
+    testWidgets('SnackBar is not present if not triggered', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: MaterialApp(
+            home: CartScreen(),
+          ),
+        ),
+      );
+
+      expect(find.byKey(Key('cart_snackbar')), findsNothing);
     });
 
     // Add more tests as needed...

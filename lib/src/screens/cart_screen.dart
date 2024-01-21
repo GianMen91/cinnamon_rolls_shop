@@ -143,6 +143,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 Text(
                   "${totalPrice.toStringAsFixed(2)} €",
+                  key: Key('total_price'),
                   style: TextStyle(
                     fontSize: size.width > 600 ? 40.0 : 18.0,
                     fontWeight: FontWeight.bold,
@@ -166,6 +167,7 @@ class CartScreen extends StatelessWidget {
                     duration: const Duration(seconds: 10),
                     content: Text(
                       "Apologies! This is a demo app, and purchasing functionality is not available. However, feel free to explore the nearest Cinnamon shop in your area for the delightful experience of buying and enjoying a delicious cinnamon roll!",
+                      key: Key('cart_snackbar'),
                       style: TextStyle(
                         color: lightTextColor,
                         fontSize: size.width > 600 ? 25.0 : 14.0,
@@ -184,6 +186,7 @@ class CartScreen extends StatelessWidget {
               ),
               child: Text(
                 "Proceed to Checkout".toUpperCase(),
+                key: Key('checkout_button'),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: size.width > 600 ? 23.0 : 16.0,
