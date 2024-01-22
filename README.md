@@ -28,7 +28,7 @@ The UI design is inspired by [this YouTube video](https://www.youtube.com/watch?
 
 ## Content Attribution
 
-All cinnamon roll images, names, descriptions, and colors are sourced from the official Cinnamood shop webpage ([https://cinnamood.de/unsere-rolls/](https://cinnamood.de/unsere-rolls/)).
+All cinnamon roll images, names, descriptions, and colors are sourced from the official [Cinnamood shop webpage](https://cinnamood.de/en/our-rolls/).
 
 
 ## Technologies Used
