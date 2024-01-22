@@ -1,11 +1,14 @@
+// Importing necessary packages and files
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:cinnamon_rolls_shop/src/widgets/search_box.dart';
 
+// The main entry point for the test suite
 void main() {
+  // Test to check if the SearchBox widget renders correctly
   testWidgets('SearchBox widget renders correctly',
       (WidgetTester tester) async {
-    // Build our widget and trigger a frame
+    // Building the widget tree with MaterialApp, Scaffold, and SearchBox
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -16,22 +19,23 @@ void main() {
       ),
     );
 
-    // Verify that the container exists
+    // Verifying the presence of the search box container
     expect(find.byKey(const Key('search_box_container')), findsOneWidget);
 
-    // Verify that the TextField exists
+    // Verifying the presence of the search text field
     expect(find.byKey(const Key('search_text_field')), findsOneWidget);
 
-    // Verify that the search icon exists
+    // Verifying the presence of the search icon
     expect(find.byKey(const Key('search_icon')), findsOneWidget);
   });
 
+  // Test to check if SearchBox invokes the callback on text change
   testWidgets('SearchBox invokes callback on text change',
       (WidgetTester tester) async {
     // Variable to store the changed text
     late String changedText;
 
-    // Build our widget and trigger a frame
+    // Building the widget tree with MaterialApp, Scaffold, and SearchBox
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -44,10 +48,10 @@ void main() {
       ),
     );
 
-    // Enter text into the search box
+    // Entering text into the search text field
     await tester.enterText(find.byType(TextField), 'Test Cinnamon');
 
-    // Verify that the callback is invoked with the correct text
+    // Verifying that the onChanged callback is called with the correct text
     expect(changedText, 'Test Cinnamon');
   });
 }
