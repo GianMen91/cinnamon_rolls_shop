@@ -23,11 +23,11 @@ class BuildIconButton extends StatelessWidget {
 
     // Return a SizedBox with a specified width and height
     return SizedBox(
-      key: Key('buildIconButtonSizedBox'), // Add key to SizedBox
+      key: const Key('buildIconButtonSizedBox'), // Add key to SizedBox
       width: size.width > 600 ? 80 : 40,
       height: size.width > 600 ? 62 : 32,
       child: OutlinedButton(
-        key: Key('buildIconButtonOutlinedButton'), // Add key to OutlinedButton
+        key: const Key('buildIconButtonOutlinedButton'), // Add key to OutlinedButton
         // Styling for the OutlinedButton
         style: OutlinedButton.styleFrom(
           padding: EdgeInsets.zero,
