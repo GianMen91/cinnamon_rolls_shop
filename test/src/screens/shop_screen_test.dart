@@ -1,3 +1,4 @@
+// Importing necessary packages and files
 import 'package:badges/badges.dart';
 import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
 import 'package:cinnamon_rolls_shop/src/constants.dart';
@@ -11,9 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
+// The main entry point for the test suite
 void main() {
+  // Grouping tests related to the 'ShopScreen' widget
   group('ShopScreen', () {
+    // Test to ensure ShopScreen renders correctly
     testWidgets('Renders ShopScreen correctly', (WidgetTester tester) async {
+      // Pumping the widget tree with ShopScreen wrapped in a ChangeNotifierProvider
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
@@ -23,18 +28,20 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle(); // Wait for animations to complete
+      // Waiting for animations to complete
+      await tester.pumpAndSettle();
 
+      // Expecting the ShopScreen widget to be present
       expect(find.byType(ShopScreen), findsOneWidget);
 
+      // Verify that the app bar is displayed and has the right background color
       final appBar = find.byKey(const Key('shop_app_bar'));
-      // Verify that the app bar is displayed
       expect(appBar, findsOneWidget);
 
-      // Get the widget and check its background color
       final appBarWidget = tester.widget<AppBar>(appBar);
       expect(appBarWidget.backgroundColor, menuBackgroundColor);
 
+      // Verify that the Cinnamood logo is displayed
       expect(find.byKey(const Key('cinnamood_logo')), findsOneWidget);
 
       // Verify that the search box is displayed
@@ -51,8 +58,10 @@ void main() {
       expect(find.byType(ItemCard), findsWidgets);
     });
 
+    // Test to check if tapping on an empty cart icon triggers a SnackBar
     testWidgets('Tap on empty cart triggers SnackBar',
         (WidgetTester tester) async {
+      // Pumping the widget tree with ShopScreen wrapped in a ChangeNotifierProvider
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
@@ -62,37 +71,42 @@ void main() {
         ),
       );
 
+      // Waiting for animations to complete
       await tester.pumpAndSettle();
 
+      // Finding the empty cart icon and tapping on it
       var emptyCartIcon = find.byKey(const Key('empty_cart_icon'));
       expect(emptyCartIcon, findsOneWidget);
 
-      // Tap the add to order button
       await tester.tap(emptyCartIcon);
       await tester.pump();
 
-      // Verify that the SnackBar is present
+      // Expecting the 'empty_cart_snackBar' widget to be present
       expect(find.byKey(const Key('empty_cart_snackBar')), findsOneWidget);
     });
 
-    testWidgets('Tap on NOT empty cart bring to Cart screen',
+    // Test to check if tapping on a non-empty cart icon navigates to the Cart screen
+    testWidgets('Tap on NOT empty cart brings to Cart screen',
         (WidgetTester tester) async {
+      // Creating a CartProvider and adding an item to the cart
       final cartProvider = CartProvider();
 
       // Create a sample cinnamon item
       final cinnamon = Cinnamon(
-          id: 1,
-          title: "Classic Roll",
-          price: 4.80,
-          type: "Cinnamon Rolls",
-          description:
-              "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
-          image: "assets/images/Classic-Roll-Vegan.png",
-          color: const Color(0xFFD3A984));
+        id: 1,
+        title: "Classic Roll",
+        price: 4.80,
+        type: "Cinnamon Rolls",
+        description:
+            "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
+        image: "assets/images/Classic-Roll-Vegan.png",
+        color: const Color(0xFFD3A984),
+      );
 
       // Add the cinnamon item to the cart with a quantity of 1
       cartProvider.addToCart(cinnamon, 1);
 
+      // Pumping the widget tree with ShopScreen wrapped in a ChangeNotifierProvider
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => cartProvider,
@@ -102,47 +116,51 @@ void main() {
         ),
       );
 
+      // Waiting for animations to complete
       await tester.pumpAndSettle();
 
-      var emptyCartIcon = find.byKey(const Key('cart_not_empty'));
-      expect(emptyCartIcon, findsOneWidget);
+      // Finding the non-empty cart icon and tapping on it
+      var nonEmptyCartIcon = find.byKey(const Key('cart_not_empty'));
+      expect(nonEmptyCartIcon, findsOneWidget);
 
-      // Tap the add to order button
-      await tester.tap(emptyCartIcon);
-      await tester.pump();
+      await tester.tap(nonEmptyCartIcon);
+      await tester.pumpAndSettle();
 
-      await tester.pumpAndSettle(); // Wait for animations to complete
-
+      // Expecting the CartScreen widget to be present
       expect(find.byType(CartScreen), findsOneWidget);
     });
 
-    testWidgets('Tap on an item in the grid bring to the Item screen',
-            (WidgetTester tester) async {
-              await tester.pumpWidget(
-                ChangeNotifierProvider(
-                  create: (context) => CartProvider(),
-                  child: const MaterialApp(
-                    home: ShopScreen(),
-                  ),
-                ),
-              );
-
-          await tester.pumpAndSettle();
-
-          var itemObject = find.byKey(const Key('grid_item_1'));
-          expect(itemObject, findsOneWidget);
-
-          // Tap the add to order button
-          await tester.tap(itemObject);
-          await tester.pump();
-
-          await tester.pumpAndSettle(); // Wait for animations to complete
-
-          expect(find.byType(ItemScreen), findsOneWidget);
-        });
-
-    testWidgets('Cart icon badge show right amount of quantity',
+    // Test to check if tapping on an item in the grid navigates to the Item screen
+    testWidgets('Tap on an item in the grid brings to the Item screen',
         (WidgetTester tester) async {
+      // Pumping the widget tree with ShopScreen wrapped in a ChangeNotifierProvider
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: const MaterialApp(
+            home: ShopScreen(),
+          ),
+        ),
+      );
+
+      // Waiting for animations to complete
+      await tester.pumpAndSettle();
+
+      // Finding an item in the grid and tapping on it
+      var itemObject = find.byKey(const Key('grid_item_1'));
+      expect(itemObject, findsOneWidget);
+
+      await tester.tap(itemObject);
+      await tester.pumpAndSettle();
+
+      // Expecting the ItemScreen widget to be present
+      expect(find.byType(ItemScreen), findsOneWidget);
+    });
+
+    // Test to check if the Cart icon badge shows the correct quantity
+    testWidgets('Cart icon badge shows right amount of quantity',
+        (WidgetTester tester) async {
+      // Creating a CartProvider and adding two items to the cart
       final cartProvider = CartProvider();
 
       // Create a sample cinnamon item 1
@@ -207,8 +225,10 @@ void main() {
       expect(badgeContentText, '2');
     });
 
+    // Test to check if the SnackBar is not visible by default
     testWidgets('SnackBar is not visible by default',
         (WidgetTester tester) async {
+      // Pumping the widget tree with ShopScreen wrapped in a ChangeNotifierProvider
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
@@ -218,13 +238,16 @@ void main() {
         ),
       );
 
+      // Waiting for animations to complete
       await tester.pumpAndSettle();
 
-      // Verify that the SnackBar is present
+      // Expecting the 'empty_cart_snackBar' widget to be absent
       expect(find.byKey(const Key('empty_cart_snackBar')), findsNothing);
     });
 
+    // Test to check if searching for cinnamon items works
     testWidgets('Search for cinnamon items', (WidgetTester tester) async {
+      // Pumping the widget tree with ShopScreen wrapped in a ChangeNotifierProvider
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
@@ -234,19 +257,20 @@ void main() {
         ),
       );
 
+      // Waiting for animations to complete
       await tester.pumpAndSettle();
 
-      // Enter a search value into the SearchBox
+      // Entering text into the search box
       await tester.enterText(find.byType(TextField), 'Test Cinnamon');
-
-      // Wait for the filtering to take effect
       await tester.pump();
 
-      // Verify that the filtered item is found
+      // Expecting the searched item to be present
       expect(find.text('Test Cinnamon'), findsOneWidget);
     });
 
+    // Test to check if filtering by cinnamon types works
     testWidgets('Filter by cinnamon types', (WidgetTester tester) async {
+      // Pumping the widget tree with ShopScreen wrapped in a ChangeNotifierProvider
       await tester.pumpWidget(
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
@@ -256,13 +280,14 @@ void main() {
         ),
       );
 
+      // Waiting for animations to complete
       await tester.pumpAndSettle();
 
-      // Tap on a cinnamon type button
+      // Tapping on the 'Fruity Rolls' button to filter by cinnamon type
       await tester.tap(find.text('Fruity Rolls'));
       await tester.pump();
 
-      // Verify that the filtered item is found
+      // Expecting the filtered type 'Fruity Rolls' to be present
       expect(find.text('Fruity Rolls'), findsOneWidget);
     });
   });
