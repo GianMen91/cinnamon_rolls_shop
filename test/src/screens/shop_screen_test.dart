@@ -1,5 +1,4 @@
 // Importing necessary packages and files
-import 'package:badges/badges.dart';
 import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
 import 'package:cinnamon_rolls_shop/src/constants.dart';
 import 'package:cinnamon_rolls_shop/src/models/cinnamon.dart';
@@ -11,6 +10,7 @@ import 'package:cinnamon_rolls_shop/src/widgets/search_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
 // The main entry point for the test suite
 void main() {
@@ -194,7 +194,7 @@ void main() {
       expect(cartBadge, findsOneWidget);
 
       // Extract the text from the Text widget
-      var cartBadgeWidget = tester.widget<Badge>(cartBadge);
+      var cartBadgeWidget = tester.widget<badges.Badge>(cartBadge);
       var badgeContentText = (cartBadgeWidget.badgeContent as Text).data;
 
       // Assert that badgeContentText is equal to '1' (1 cinnamon in the cart)
@@ -218,7 +218,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Extract the updated text from the Text widget
-      cartBadgeWidget = tester.widget<Badge>(cartBadge);
+      cartBadgeWidget = tester.widget<badges.Badge>(cartBadge);
       badgeContentText = (cartBadgeWidget.badgeContent as Text).data;
 
       // Assert that badgeContentText is equal to '2' (2 cinnamon in the cart)

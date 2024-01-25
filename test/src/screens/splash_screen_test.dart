@@ -11,7 +11,7 @@ void main() {
   tearDown(() {
     // Ensure that any pending timers are canceled
     // This helps avoid issues with pending timers after the widget tree is disposed
-    WidgetsBinding.instance?.handleBeginFrame(null);
+    WidgetsBinding.instance.handleBeginFrame(null);
   });
 
   // Test to check if the Splash screen navigates to ShopScreen after the delay
