@@ -1,8 +1,8 @@
 // Import necessary packages and files
+import 'package:badges/badges.dart';
 import 'package:cinnamon_rolls_shop/src/widgets/search_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:badges/badges.dart';
 
 // Import custom widgets and classes
 import '../cart_provider.dart';
@@ -11,6 +11,7 @@ import '../models/cinnamon.dart';
 import '../widgets/item_card.dart';
 import 'cart_screen.dart';
 import 'item_screen.dart';
+import 'package:badges/badges.dart' as badges;
 
 // Define a StatefulWidget for the main shop screen
 class ShopScreen extends StatefulWidget {
@@ -51,7 +52,8 @@ class _ShopScreenState extends State<ShopScreen> {
           padding: EdgeInsets.all(size.width > 600 ? 10.0 : 7.0),
           child: Image.asset('assets/logo/Cinnamood-Logo.png',
               key: const Key('cinnamood_logo'),
-              fit: BoxFit.cover, height: size.width > 600 ? 30 : 20),
+              fit: BoxFit.cover,
+              height: size.width > 600 ? 30 : 20),
         ),
         backgroundColor: menuBackgroundColor,
         elevation: 0,
@@ -63,10 +65,12 @@ class _ShopScreenState extends State<ShopScreen> {
 
               // Show badge if cart is not empty
               if (itemCount > 0) {
-                return Badge(
+                return badges.Badge(
                   key: const Key('cart_badge'),
                   badgeContent: Text(itemCount.toString()),
-                  badgeColor: Colors.white,
+                  badgeStyle: badges.BadgeStyle(
+                    badgeColor: Colors.white,
+                  ),
                   position: BadgePosition.topEnd(top: -2, end: -1),
                   child: IconButton(
                     icon: Icon(Icons.shopping_cart,
