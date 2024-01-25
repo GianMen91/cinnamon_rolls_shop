@@ -37,7 +37,7 @@ All cinnamon roll images, names, descriptions, and colors are sourced from the o
 - **Provider Package**: State management library for managing and listening to changes in the app state.
 - **Badges Package**: Widget for displaying badges, enhancing the shopping cart icon.
 - **Linting**: The codebase adheres to best practices and coding standards using lint rules.
-- **Widget Tests**: Extensive use of widget tests to ensure the robustness of the UI components, behaviors, and overall application functionality.
+- ~~**Widget Tests**: Extensive use of widget tests to ensure the robustness of the UI components, behaviors, and overall application functionality.~~ (they need to be updated after recent dart upgrade)
 
 ## Responsiveness
 
