@@ -17,14 +17,13 @@ class TypeSelector extends StatefulWidget {
 }
 
 class TypeSelectorState extends State<TypeSelector> {
-
   int selectedIndex = 0;
+
   // Build method to create the widget UI
   @override
   Widget build(BuildContext context) {
     // Get the size of the current screen
     final Size size = MediaQuery.of(context).size;
-
 
     // List of cinnamon types
     List types = ['All', 'Cinnamon Rolls', 'Fruity Rolls', 'Next Level Rolls'];
@@ -49,22 +48,20 @@ class TypeSelectorState extends State<TypeSelector> {
               left: defaultPadding,
               right: index == types.length - 1 ? defaultPadding : 0,
             ),
-            padding:
-            const EdgeInsets.symmetric(horizontal: defaultPadding),
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             decoration: BoxDecoration(
-              color: index == selectedIndex
-                  ? lightTextColor
-                  : Colors.transparent,
+              color:
+                  index == selectedIndex ? lightTextColor : Colors.transparent,
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(types[index],
                 style: index == selectedIndex
                     ? TextStyle(
-                    color: Colors.white,
-                    fontSize: size.width > 600 ? 20.0 : 14.0)
+                        color: Colors.white,
+                        fontSize: size.width > 600 ? 20.0 : 14.0)
                     : TextStyle(
-                    color: darkTextColor,
-                    fontSize: size.width > 600 ? 20.0 : 14.0)),
+                        color: darkTextColor,
+                        fontSize: size.width > 600 ? 20.0 : 14.0)),
           ),
         ),
       ),
