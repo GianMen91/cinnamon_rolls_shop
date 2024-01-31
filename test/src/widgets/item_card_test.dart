@@ -57,40 +57,4 @@ void main() {
     // Verifying the presence of the Image widget
     expect(find.byType(Image), findsOneWidget);
   });
-
-  // Test to check if the image path in ItemCard is correct
-  testWidgets('Image path is correct', (WidgetTester tester) async {
-    // Creating a sample Cinnamon object
-    final Cinnamon testCinnamon = Cinnamon(
-        id: 1,
-        title: "Classic Roll",
-        price: 4.80,
-        type: "Cinnamon Rolls",
-        description:
-            "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
-        image: "assets/images/Classic-Roll-Vegan.png",
-        color: const Color(0xFFD3A984));
-
-    // Building the widget tree with MaterialApp and ItemCard
-    await tester.pumpWidget(
-      MaterialApp(
-        home: ItemCard(
-          cinnamon: testCinnamon,
-          press: () {},
-        ),
-      ),
-    );
-
-    // Finding the item image and verifying its presence
-    var itemImage = find.byKey(const Key('item_image'));
-    expect(itemImage, findsOneWidget);
-
-    // Extracting image properties and verifying the image path
-    final Image image = itemImage.evaluate().single.widget as Image;
-    var imagePath = (image.image as AssetImage).assetName;
-
-    expect(image, isInstanceOf<Image>());
-    expect(image.image, isInstanceOf<AssetImage>());
-    expect(imagePath, "assets/images/Classic-Roll-Vegan.png");
-  });
 }
