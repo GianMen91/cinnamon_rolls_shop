@@ -11,7 +11,7 @@ import 'package:cinnamon_rolls_shop/src/widgets/cart_counter.dart';
 // Define a StatefulWidget for displaying details of a specific cinnamon item
 class ItemScreen extends StatefulWidget {
   // Constructor with required parameter
-  const ItemScreen({Key? key, required this.cinnamon}) : super(key: key);
+  const ItemScreen({super.key, required this.cinnamon});
 
   // Property to store information about the cinnamon item
   final Cinnamon cinnamon;
@@ -129,8 +129,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(double.infinity,
-                                      size.width > 600 ? 68.0 : 48.0),
-                                  primary: lightTextColor,
+                                      size.width > 600 ? 68.0 : 48.0), backgroundColor: lightTextColor,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(18)),
                                 ),

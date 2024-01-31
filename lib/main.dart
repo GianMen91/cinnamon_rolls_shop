@@ -18,7 +18,7 @@ void main() {
 // StatelessWidget for the main application
 class MyApp extends StatelessWidget {
   // Constructor
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // Build method to create the widget UI
   @override

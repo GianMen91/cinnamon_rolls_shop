@@ -7,10 +7,10 @@ import '../constants.dart';
 // Define a stateless widget for a custom IconButton
 class BuildIconButton extends StatelessWidget {
   const BuildIconButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   // Properties to store the icon and callback function
   final IconData icon;

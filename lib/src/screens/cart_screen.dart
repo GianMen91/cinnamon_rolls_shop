@@ -10,7 +10,7 @@ import '../widgets/cart_counter.dart';
 
 // Define a screen for displaying the items in the shopping cart
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  const CartScreen({super.key});
 
   // Build method to create the widget UI
   @override
@@ -178,8 +178,7 @@ class CartScreen extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize:
-                    Size(double.infinity, size.width > 600 ? 68.0 : 48.0),
-                primary: lightTextColor,
+                    Size(double.infinity, size.width > 600 ? 68.0 : 48.0), backgroundColor: lightTextColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18),
                 ),

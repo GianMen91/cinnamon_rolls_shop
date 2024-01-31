@@ -8,9 +8,9 @@ import '../constants.dart';
 class SearchBox extends StatelessWidget {
   // Constructor with required parameter
   const SearchBox({
-    Key? key,
+    super.key,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   // Callback function for handling text changes
   final ValueChanged onChanged;

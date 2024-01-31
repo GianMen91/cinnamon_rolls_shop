@@ -11,10 +11,10 @@ import '../constants.dart';
 class CartCounter extends StatefulWidget {
   // Constructor with required parameters
   const CartCounter({
-    Key? key,
+    super.key,
     required this.onValueChanged,
     required this.initialQuantity,
-  }) : super(key: key);
+  });
 
   // Callback function to notify parent when the quantity changes
   final Function(int) onValueChanged;
@@ -24,11 +24,11 @@ class CartCounter extends StatefulWidget {
 
   // Create the mutable state for the widget
   @override
-  _CartCounterState createState() => _CartCounterState();
+  CartCounterState createState() => CartCounterState();
 }
 
 // Private state class for the CartCounter widget
-class _CartCounterState extends State<CartCounter> {
+class CartCounterState extends State<CartCounter> {
   // Variable to store the current number of items
   late int numOfItems;
 

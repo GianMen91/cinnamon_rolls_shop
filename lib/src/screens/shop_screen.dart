@@ -15,7 +15,7 @@ import 'package:badges/badges.dart' as badges;
 
 // Define a StatefulWidget for the main shop screen
 class ShopScreen extends StatefulWidget {
-  const ShopScreen({Key? key}) : super(key: key);
+  const ShopScreen({super.key});
 
   @override
   State<ShopScreen> createState() => _ShopScreenState();
@@ -68,7 +68,7 @@ class _ShopScreenState extends State<ShopScreen> {
                 return badges.Badge(
                   key: const Key('cart_badge'),
                   badgeContent: Text(itemCount.toString()),
-                  badgeStyle: badges.BadgeStyle(
+                  badgeStyle: const badges.BadgeStyle(
                     badgeColor: Colors.white,
                   ),
                   position: BadgePosition.topEnd(top: -2, end: -1),

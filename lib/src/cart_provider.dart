@@ -1,4 +1,6 @@
 // Import necessary packages and files
+// ignore_for_file: depend_on_referenced_packages, implementation_imports
+
 import 'package:collection/src/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 

@@ -8,8 +8,8 @@ import 'shop_screen.dart';
 class SplashScreen extends StatelessWidget {
   // Constructor
   const SplashScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   // Build method to create the widget UI
   @override

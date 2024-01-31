@@ -8,8 +8,7 @@ import '../constants.dart';
 // Define a stateless widget for displaying an item card
 class ItemCard extends StatelessWidget {
   // Constructor with required parameters
-  const ItemCard({Key? key, required this.cinnamon, required this.press})
-      : super(key: key);
+  const ItemCard({super.key, required this.cinnamon, required this.press});
 
   // Properties to store cinnamon information and a callback function
   final Cinnamon cinnamon;
