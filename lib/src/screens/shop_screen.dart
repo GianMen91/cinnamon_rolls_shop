@@ -38,6 +38,8 @@ class _ShopScreenState extends State<ShopScreen> {
       return typeCondition && searchCondition;
     }).toList();
 
+    final Size size = MediaQuery.of(context).size;
+
     // Build the main scaffold for the shop screen
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -67,28 +69,35 @@ class _ShopScreenState extends State<ShopScreen> {
           const SizedBox(height: defaultPadding / 2),
           // Expanded section containing a GridView of ItemCard widgets
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: GridView.builder(
-                itemCount: filteredCinnamon.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: defaultPadding,
-                  crossAxisSpacing: defaultPadding,
-                  childAspectRatio: 0.75,
-                ),
-                itemBuilder: (context, index) => ItemCard(
-                  key: Key('grid_item_$index'),
-                  cinnamon: filteredCinnamon[index],
-                  press: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ItemScreen(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                child: Column(children: [
+                  SizedBox(
+                    height: size.height * 0.6,
+                    child: GridView.builder(
+                      itemCount: filteredCinnamon.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: defaultPadding,
+                        crossAxisSpacing: defaultPadding,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemBuilder: (context, index) => ItemCard(
+                        key: Key('grid_item_$index'),
                         cinnamon: filteredCinnamon[index],
+                        press: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ItemScreen(
+                              cinnamon: filteredCinnamon[index],
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ]),
               ),
             ),
           ),
