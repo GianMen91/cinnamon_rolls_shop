@@ -12,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
 
-// The main entry point for the test suite
+// The main entry point for the test suite BROKEN
 void main() {
   // Grouping tests related to the 'ShopScreen' widget
   group('ShopScreen', () {
