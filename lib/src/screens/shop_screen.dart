@@ -9,6 +9,7 @@ import '../cart_provider.dart';
 import '../constants.dart';
 import '../models/cinnamon.dart';
 import '../widgets/item_card.dart';
+import '../widgets/type_selector.dart';
 import 'cart_screen.dart';
 import 'item_screen.dart';
 import 'package:badges/badges.dart' as badges;
@@ -27,8 +28,7 @@ class _ShopScreenState extends State<ShopScreen> {
   String _selectedType = 'All';
   String _searchedValue = '';
 
-  // List of cinnamon types
-  List types = ['All', 'Cinnamon Rolls', 'Fruity Rolls', 'Next Level Rolls'];
+
 
   @override
   Widget build(BuildContext context) {
@@ -123,45 +123,14 @@ class _ShopScreenState extends State<ShopScreen> {
             },
           ),
           // Container for displaying cinnamon types as buttons
-          Container(
+          TypeSelector(
             key: const Key('type_buttons_container'),
-            margin: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-            height: size.width > 600 ? 50 : 30,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: types.length,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedIndex = index;
-                    _selectedType = types[index];
-                  });
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.only(
-                    left: defaultPadding,
-                    right: index == types.length - 1 ? defaultPadding : 0,
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: defaultPadding),
-                  decoration: BoxDecoration(
-                    color: index == selectedIndex
-                        ? lightTextColor
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(types[index],
-                      style: index == selectedIndex
-                          ? TextStyle(
-                              color: Colors.white,
-                              fontSize: size.width > 600 ? 20.0 : 14.0)
-                          : TextStyle(
-                              color: darkTextColor,
-                              fontSize: size.width > 600 ? 20.0 : 14.0)),
-                ),
-              ),
-            ),
+            onChanged: (type) {
+              // Handle type change in the ShopScreen
+              setState(() {
+                _selectedType = type;
+              });
+            },
           ),
           const SizedBox(height: defaultPadding / 2),
           // Expanded section containing a GridView of ItemCard widgets
@@ -195,4 +164,5 @@ class _ShopScreenState extends State<ShopScreen> {
       ),
     );
   }
+
 }
