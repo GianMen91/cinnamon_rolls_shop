@@ -28,13 +28,8 @@ class _ShopScreenState extends State<ShopScreen> {
   String _selectedType = 'All';
   String _searchedValue = '';
 
-
-
   @override
   Widget build(BuildContext context) {
-    // Get the size of the current screen
-    final Size size = MediaQuery.of(context).size;
-
     // Filter the cinnamon items based on selected type and search value
     List<Cinnamon> filteredCinnamon = cinnamon.where((c) {
       bool typeCondition = _selectedType == 'All' || c.type == _selectedType;
@@ -46,70 +41,7 @@ class _ShopScreenState extends State<ShopScreen> {
     // Build the main scaffold for the shop screen
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(
-        key: const Key('shop_app_bar'),
-        title: Padding(
-          padding: EdgeInsets.all(size.width > 600 ? 10.0 : 7.0),
-          child: Image.asset('assets/logo/Cinnamood-Logo.png',
-              key: const Key('cinnamood_logo'),
-              fit: BoxFit.cover,
-              height: size.width > 600 ? 30 : 20),
-        ),
-        backgroundColor: menuBackgroundColor,
-        elevation: 0,
-        actions: <Widget>[
-          // Consumer widget to show the shopping cart icon with badge
-          Consumer<CartProvider>(
-            builder: (context, cartProvider, child) {
-              int itemCount = cartProvider.cartItems.length;
-
-              // Show badge if cart is not empty
-              if (itemCount > 0) {
-                return badges.Badge(
-                  key: const Key('cart_badge'),
-                  badgeContent: Text(itemCount.toString()),
-                  badgeStyle: const badges.BadgeStyle(
-                    badgeColor: Colors.white,
-                  ),
-                  position: BadgePosition.topEnd(top: -2, end: -1),
-                  child: IconButton(
-                    icon: Icon(Icons.shopping_cart,
-                        key: const Key('cart_not_empty'),
-                        color: lightTextColor,
-                        size: size.width > 600 ? 38 : 25),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CartScreen()));
-                    },
-                  ),
-                );
-              } else {
-                // Show regular cart icon if cart is empty
-                return IconButton(
-                  key: const Key('empty_cart_icon'),
-                  icon: Icon(Icons.shopping_cart,
-                      color: lightTextColor, size: size.width > 600 ? 38 : 25),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        key: const Key('empty_cart_snackBar'),
-                        duration: const Duration(seconds: 1),
-                        content: Text('The cart is empty!',
-                            style: TextStyle(
-                                color: lightTextColor,
-                                fontSize: size.width > 600 ? 25.0 : 14.0)),
-                      ),
-                    );
-                  },
-                );
-              }
-            },
-          ),
-          const SizedBox(width: defaultPadding / 2),
-        ],
-      ),
+      appBar: const ShopScreenMenu(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -164,5 +96,82 @@ class _ShopScreenState extends State<ShopScreen> {
       ),
     );
   }
+}
 
+class ShopScreenMenu extends StatelessWidget implements PreferredSizeWidget {
+  const ShopScreenMenu({
+    super.key,
+  });
+
+  @override
+  Size get preferredSize => const Size.fromHeight(50);
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return AppBar(
+      key: const Key('shop_app_bar'),
+      title: Padding(
+        padding: EdgeInsets.all(size.width > 600 ? 10.0 : 7.0),
+        child: Image.asset('assets/logo/Cinnamood-Logo.png',
+            key: const Key('cinnamood_logo'),
+            fit: BoxFit.cover,
+            height: size.width > 600 ? 30 : 20),
+      ),
+      backgroundColor: menuBackgroundColor,
+      elevation: 0,
+      actions: <Widget>[
+        // Consumer widget to show the shopping cart icon with badge
+        Consumer<CartProvider>(
+          builder: (context, cartProvider, child) {
+            int itemCount = cartProvider.cartItems.length;
+
+            // Show badge if cart is not empty
+            if (itemCount > 0) {
+              return badges.Badge(
+                key: const Key('cart_badge'),
+                badgeContent: Text(itemCount.toString()),
+                badgeStyle: const badges.BadgeStyle(
+                  badgeColor: Colors.white,
+                ),
+                position: BadgePosition.topEnd(top: -2, end: -1),
+                child: IconButton(
+                  icon: Icon(Icons.shopping_cart,
+                      key: const Key('cart_not_empty'),
+                      color: lightTextColor,
+                      size: size.width > 600 ? 38 : 25),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CartScreen()));
+                  },
+                ),
+              );
+            } else {
+              // Show regular cart icon if cart is empty
+              return IconButton(
+                key: const Key('empty_cart_icon'),
+                icon: Icon(Icons.shopping_cart,
+                    color: lightTextColor, size: size.width > 600 ? 38 : 25),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      key: const Key('empty_cart_snackBar'),
+                      duration: const Duration(seconds: 1),
+                      content: Text('The cart is empty!',
+                          style: TextStyle(
+                              color: lightTextColor,
+                              fontSize: size.width > 600 ? 25.0 : 14.0)),
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
+        const SizedBox(width: defaultPadding / 2),
+      ],
+    );
+  }
 }
