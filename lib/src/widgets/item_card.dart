@@ -40,11 +40,6 @@ class ItemCard extends StatelessWidget {
               child: Image.asset(
                 cinnamon.image,
                 key:const Key("item_image"),
-                width: size.width > 600 ? 300 : 120,
-                // Adjust width based on screen size
-                height: size.width > 600
-                    ? 300
-                    : 120, // Adjust height based on screen size
               ),
             ),
           ),
