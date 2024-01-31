@@ -152,56 +152,58 @@ class _ItemScreenState extends State<ItemScreen> {
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        // Display the cinnamon item title
-                        Text(
-                          widget.cinnamon.title,
-                          key: const Key('item_title'),
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: size.width > 600 ? 60.0 : 22.0),
-                        ),
-                        // Display the cinnamon item type
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            widget.cinnamon.type,
-                            key: const Key('item_type'),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          // Display the cinnamon item title
+                          Text(
+                            widget.cinnamon.title,
+                            key: const Key('item_title'),
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: size.width > 600 ? 30.0 : 14.0),
+                                fontWeight: FontWeight.bold,
+                                fontSize: size.width > 600 ? 60.0 : 22.0),
                           ),
-                        ),
-                        // Row containing price, spacing, and Hero image
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              "Price\n${widget.cinnamon.price.toStringAsFixed(2)} €",
-                              key: const Key('price_row'),
+                          // Display the cinnamon item type
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              widget.cinnamon.type,
+                              key: const Key('item_type'),
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: size.width > 600 ? 30.0 : 14.0)
+                                  fontSize: size.width > 600 ? 30.0 : 14.0),
                             ),
-                            // SizedBox for spacing
-                            const Expanded(
-                              child: SizedBox(),
-                            ),
-                            // Hero image for smooth transition between screens
-                            Hero(
-                              tag: "${widget.cinnamon.id}",
-                              child: Image.asset(
-                                widget.cinnamon.image,
-                                width: size.width > 600 ? 500 : 260,
-                                fit: BoxFit.fill,
+                          ),
+                          // Row containing price, spacing, and Hero image
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                "Price\n${widget.cinnamon.price.toStringAsFixed(2)} €",
+                                key: const Key('price_row'),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: size.width > 600 ? 30.0 : 14.0)
                               ),
-                            )
-                          ],
-                        )
-                      ],
+                              // SizedBox for spacing
+                              const Expanded(
+                                child: SizedBox(),
+                              ),
+                              // Hero image for smooth transition between screens
+                              Hero(
+                                tag: "${widget.cinnamon.id}",
+                                child: Image.asset(
+                                  widget.cinnamon.image,
+                                  width: size.width > 600 ? 500 : 260,
+                                  fit: BoxFit.fill,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
