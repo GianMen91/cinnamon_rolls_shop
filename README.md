@@ -6,6 +6,8 @@
 It is inspired by the renowned [Cinnamood](https://cinnamood.de) shop in Berlin and brings the delectable experience of exploring and virtually shopping for mouth-watering cinnamon rolls.
 Capturing the essence of the Cinnamood shop, the app features a user-friendly interface, a diverse product catalog, and a dynamic cart system.
 
+CI/CD with **GitHub Actions**.
+
 ## Screenshots
 
 <img src="img/img-1.png" width=300 /> <img src="img/img-2.png" width=300 /> 
