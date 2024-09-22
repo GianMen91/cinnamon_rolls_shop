@@ -28,10 +28,3 @@ jobs:
 
       - name: Build APK (Debug)
         run: flutter build apk --debug
-
-      # Optional: iOS project
-      - name: Build IPA (Release)
-        run: |
-          flutter build ios --release \
-            --build-name=1.0.0 \
-            --build-number=${{ github.run_number }}
