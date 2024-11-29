@@ -36,6 +36,7 @@ All cinnamon roll images, names, descriptions, and colors are sourced from the o
 ## Technologies Used
 
 - **Flutter**: A powerful UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
+- **Hero Widget**: A built-in Flutter widget used for creating smooth, visually appealing transitions between screens by animating a shared element.
 - **Provider Package**: State management library for managing and listening to changes in the app state.
 - **Badges Package**: Widget for displaying badges, enhancing the shopping cart icon.
 - **Linting**: The codebase adheres to best practices and coding standards using lint rules.
