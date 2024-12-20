@@ -1,9 +1,10 @@
 # Cinnamood - Cinnamon Rolls Shop
 
 ## Overview
-[![Workflow Status](https://img.shields.io/github/actions/workflow/status/GianMen91/cinnamon_rolls_shop/ci.yml?branch=master)](https://github.com/GianMen91/cinnamon_rolls_shop/actions)
+
 [![License](https://img.shields.io/github/license/GianMen91/cinnamon_rolls_shop)](https://github.com/GianMen91/cinnamon_rolls_shop/blob/master/LICENSE)
 [![Version](https://img.shields.io/github/v/release/GianMen91/cinnamon_rolls_shop)](https://github.com/GianMen91/cinnamon_rolls_shop/releases)
+[![Workflow Status](https://img.shields.io/github/actions/workflow/status/GianMen91/cinnamon_rolls_shop/ci.yml?branch=master)](https://github.com/GianMen91/cinnamon_rolls_shop/actions)
 
 "Cinnamood - Cinnamon Rolls Shop" is an application I developed with **Flutter** that uses **Provider** for state management.
 It is inspired by the renowned [Cinnamood](https://cinnamood.de) shop in Berlin and brings the delectable experience of exploring and virtually shopping for mouth-watering cinnamon rolls.
