@@ -58,14 +58,6 @@ flutter:
     - assets/images/
     - assets/logo/
 
-  # Supported platforms
-  platforms:
-    android:
-      min_sdk_version: 21
-    ios:
-      minimum_os_version: 11.0
-
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
