@@ -5,7 +5,10 @@
 [![License](https://img.shields.io/github/license/GianMen91/cinnamon_rolls_shop)](https://github.com/GianMen91/cinnamon_rolls_shop/blob/master/LICENSE)
 [![Version](https://img.shields.io/github/v/release/GianMen91/cinnamon_rolls_shop)](https://github.com/GianMen91/cinnamon_rolls_shop/releases)
 [![Workflow Status](https://img.shields.io/github/actions/workflow/status/GianMen91/cinnamon_rolls_shop/ci.yml?branch=master)](https://github.com/GianMen91/cinnamon_rolls_shop/actions)
-[![Flutter Platform](https://badgen.net/pub/flutter-platform/cinnamon_rolls_shop)](https://pub.dev/packages/cinnamon_rolls_shop)
+[![Platform](https://img.shields.io/badge/platform-flutter-02569B)](https://shields.io)
+[![Flutter SDK](https://img.shields.io/badge/flutter-%3E%3D3.0.0-blue)](https://pub.dev/packages/cinnamon_rolls_shop)
+[![Contributors](https://img.shields.io/github/contributors/GianMen91/cinnamon_rolls_shop)](https://github.com/GianMen91/cinnamon_rolls_shop/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/GianMen91/cinnamon_rolls_shop)](https://github.com/GianMen91/cinnamon_rolls_shop/commits)
 
 "Cinnamood - Cinnamon Rolls Shop" is an application I developed with **Flutter** that uses **Provider** for state management.
 It is inspired by the renowned [Cinnamood](https://cinnamood.de) shop in Berlin and brings the delectable experience of exploring and virtually shopping for mouth-watering cinnamon rolls.
