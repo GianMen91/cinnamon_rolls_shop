@@ -3,6 +3,9 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:provider/provider.dart';
 import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
 
 // This file does not exist yet,
 // it will be generated in the next step
@@ -25,9 +28,60 @@ class WidgetbookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Widgetbook.material(
-      // The [directories] variable does not exist yet,
-      // it will be generated in the next step
       directories: directories,
+      addons: [
+      /* MaterialThemeAddon(
+          themes: [
+            WidgetbookTheme(
+                name: 'Light',
+                data: yourCustomLightTheme
+            ),
+            WidgetbookTheme(
+                name: 'Dark',
+                data: yourCustomTheme
+            ),
+          ],
+        ),*/
+        TextScaleAddon(
+          min: 1.0,
+          max: 2.0,
+        ),
+        LocalizationAddon(
+          locales: [
+            const Locale('en', 'US'),
+          ],
+          localizationsDelegates: [
+            DefaultWidgetsLocalizations.delegate,
+            DefaultMaterialLocalizations.delegate,
+          ],
+        ),
+        DeviceFrameAddon(
+          devices: [
+            Devices.ios.iPhoneSE,
+            Devices.ios.iPhone13,
+            Devices.ios.iPad,
+            Devices.ios.iPad12InchesGen4,
+            Devices.android.samsungGalaxyNote20,
+            Devices.android.mediumPhone
+          ],
+        ),
+        GridAddon(),
+      ],
+      appBuilder: (context, child) {
+        return ScreenUtilInit(
+          designSize: const Size(375, 812),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          useInheritedMediaQuery: true,
+          builder: (context, child) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: child,
+            );
+          },
+          child: child,
+        );
+      },
     );
   }
 }
