@@ -36,7 +36,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'ItemScreen',
         useCase: _i1.WidgetbookUseCase(
           name: 'Default',
-          builder: _i3.builditemScreenUseCase,
+          builder: _i3.buildItemScreenUseCase,
         ),
       ),
       _i1.WidgetbookLeafComponent(
