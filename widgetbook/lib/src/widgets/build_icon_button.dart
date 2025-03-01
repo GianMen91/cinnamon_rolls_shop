@@ -5,6 +5,6 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:cinnamon_rolls_shop/src/widgets/build_icon_button.dart';
 
 @widgetbook.UseCase(name: 'Default', type: BuildIconButton)
-Widget buildCoolButtonUseCase(BuildContext context) {
+Widget buildBuildIconButtonUseCase(BuildContext context) {
   return BuildIconButton(icon: Icons.remove, onPressed: () {  },);
 }

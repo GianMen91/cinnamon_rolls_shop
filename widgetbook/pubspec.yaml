@@ -9,6 +9,8 @@ environment:
 dependencies:
   cinnamon_rolls_shop:
     path: ../
+  assets:
+    path: ../assets
   flutter:
     sdk: flutter
   widgetbook: ^3.11.0
