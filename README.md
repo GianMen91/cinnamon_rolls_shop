@@ -16,6 +16,8 @@ The app captures the essence of the Cinnamood shop, featuring a user-friendly in
 I used **Hero Widget** for creating smooth, visually appealing transitions between screens by animating a shared element.
 **CI/CD** with **GitHub Actions**.
 
+Additionally, the app's **UI components** are designed and tested using **Widgetbook**, a tool that enables efficient and structured UI testing and documentation, providing an overview of individual widgets and their behavior in different scenarios.
+
 ## Screenshots
 
 <img src="img/img-1.png" width=300 /> <img src="img/img-2.png" width=300 /> 
@@ -40,7 +42,6 @@ The UI design is inspired by [this YouTube video](https://www.youtube.com/watch?
 
 All cinnamon roll images, names, descriptions, and colors are sourced from the official [Cinnamood shop webpage](https://cinnamood.de/en/our-rolls/).
 
-
 ## Technologies Used
 
 - **Flutter**: A powerful UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
@@ -48,6 +49,7 @@ All cinnamon roll images, names, descriptions, and colors are sourced from the o
 - **Provider Package**: State management library for managing and listening to changes in the app state.
 - **Badges Package**: Widget for displaying badges, enhancing the shopping cart icon.
 - **Linting**: The codebase adheres to best practices and coding standards using lint rules.
+- **Widgetbook**: A UI design and testing tool to visualize, test, and document individual widgets in isolation.
 - **Widget Tests**: Extensive use of widget tests to ensure the robustness of the UI components, behaviors, and overall application functionality.
 
 ## Responsiveness
@@ -59,4 +61,3 @@ The app is designed to work seamlessly across various screen sizes, providing a 
 - Checkout Process: Implement a complete checkout process for users to finalize their orders.
 - User Authentication: Add user authentication for personalized experiences.
 - Localization: Support multiple languages for a broader user audience.
-
