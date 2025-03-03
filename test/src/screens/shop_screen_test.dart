@@ -99,7 +99,7 @@ void main() {
         type: "Cinnamon Rolls",
         description:
             "Timeless: fluffy dough with cinnamon filling, topped with cream cheese frosting.",
-        image: "assets/images/Classic-Roll-Vegan.png",
+        image: "images/Classic-Roll-Vegan.png",
         color: const Color(0xFFD3A984),
       );
 
