@@ -63,7 +63,7 @@ class CartScreen extends StatelessWidget {
                             color: item.cinnamon.color,
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          child: Image.asset(item.cinnamon.image),
+                          child: Image.asset(item.cinnamon.image,package: 'assets'),
                         ),
                         const SizedBox(width: defaultPadding),
                         Expanded(

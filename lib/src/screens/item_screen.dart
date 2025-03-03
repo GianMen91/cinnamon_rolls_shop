@@ -196,6 +196,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                 tag: "${widget.cinnamon.id}",
                                 child: Image.asset(
                                   widget.cinnamon.image,
+                                  package: 'assets',
                                   width: size.width > 600 ? 500 : 260,
                                   fit: BoxFit.fill,
                                 ),

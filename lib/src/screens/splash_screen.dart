@@ -35,7 +35,8 @@ class SplashScreen extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Image.asset(
-                    "assets/logo/Cinnamood-Logo.png",
+                    "logo/Cinnamood-Logo.png",
+                    package: 'assets',
                     fit: BoxFit.contain,
                     width:
                         MediaQuery.of(context).size.width > 600 ? 600.0 : 300.0,

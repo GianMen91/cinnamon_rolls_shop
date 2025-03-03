@@ -122,7 +122,8 @@ class ShopScreenMenu extends StatelessWidget implements PreferredSizeWidget {
       key: const Key('shop_app_bar'),
       title: Padding(
         padding: EdgeInsets.all(size.width > 600 ? 10.0 : 7.0),
-        child: Image.asset('assets/logo/Cinnamood-Logo.png',
+        child: Image.asset('logo/Cinnamood-Logo.png',
+            package: 'assets',
             key: const Key('cinnamood_logo'),
             fit: BoxFit.cover,
             height: size.width > 600 ? 30 : 20),

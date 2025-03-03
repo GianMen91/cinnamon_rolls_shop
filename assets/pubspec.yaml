@@ -12,3 +12,5 @@ environment:
 flutter:
   assets:
     - .
+    - ./images/
+    - ./logo/

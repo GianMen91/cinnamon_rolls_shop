@@ -39,6 +39,7 @@ class ItemCard extends StatelessWidget {
               tag: "${cinnamon.id}",
               child: Image.asset(
                 cinnamon.image,
+                package: 'assets',
                 key:const Key("item_image"),
               ),
             ),
