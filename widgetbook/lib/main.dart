@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:cinnamon_rolls_shop/src/cart_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
 // This file does not exist yet,
 // it will be generated in the next step
 import 'main.directories.g.dart';
@@ -30,7 +28,7 @@ class WidgetbookApp extends StatelessWidget {
     return Widgetbook.material(
       directories: directories,
       addons: [
-      /* MaterialThemeAddon(
+        /* MaterialThemeAddon(
           themes: [
             WidgetbookTheme(
                 name: 'Light',
@@ -66,6 +64,13 @@ class WidgetbookApp extends StatelessWidget {
           ],
         ),
         GridAddon(),
+        AlignmentAddon(),
+        BuilderAddon(
+          name: 'SafeArea',
+          builder: (_, child) => SafeArea(
+            child: child,
+          ),
+        ),
       ],
       appBuilder: (context, child) {
         return ScreenUtilInit(
