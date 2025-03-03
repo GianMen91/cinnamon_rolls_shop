@@ -56,6 +56,14 @@ All cinnamon roll images, names, descriptions, and colors are sourced from the o
 
 The app is designed to work seamlessly across various screen sizes, providing a consistent and enjoyable experience on both small and large devices.
 
+###  Widgetbook Setup
+
+Widgetbook is used to visualize and test UI components in isolation. To run it, follow these steps:
+
+1. Navigate to the widgetbook directory: `cd widgetbook`
+2. Ensure generated files are up to date by running:  `dart run build_runner build -d`
+3. Start Widgetbook: `flutter run`
+
 ## Future Enhancements
 
 - Checkout Process: Implement a complete checkout process for users to finalize their orders.
